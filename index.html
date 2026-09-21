@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CzystyDom – Usługi sprzątające</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="logo">
+        <span class="logo-icon">🧼</span>
+        <span class="logo-text">CzystyDom</span>
+      </div>
+      <nav class="nav">
+        <a href="#usugi">Usługi</a>
+        <a href="#o-nas">O nas</a>
+        <a href="#kontakt" class="nav-cta">Bezpłatna wycena</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container hero-inner">
+      <div class="hero-text">
+        <h1>Twój dom, <span>lśniąco czysty</span></h1>
+        <p>Profesjonalne sprzątanie domowe – podłogi, łazienki i kuchnie w rękach naszego zespołu. Ty się nie martwisz, my się zajmiemy resztą.</p>
+        <a href="#kontakt" class="btn btn-primary">Zamów darmową wycenę</a>
+      </div>
+      <div class="hero-visual" aria-hidden="true">
+        <div class="hero-bubble bubble-1">✨</div>
+        <div class="hero-bubble bubble-2">🧽</div>
+        <div class="hero-bubble bubble-3">🪣</div>
+        <div class="hero-circle"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- USŁUGI -->
+  <section id="usugi" class="services">
+    <div class="container">
+      <h2 class="section-title">Nasze usługi</h2>
+      <p class="section-subtitle">Dbamy o każdy zakątek Twojego domu</p>
+
+      <div class="services-grid">
+
+        <div class="service-card">
+          <div class="service-icon">🏠</div>
+          <h3>Sprzątanie domowe</h3>
+          <p>Regularne lub jednorazowe sprzątanie mieszkań i domów – odkurzanie, wycieranie powierzchni, porządkowanie pomieszczeń.</p>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon">🧹</div>
+          <h3>Mycie podłóg</h3>
+          <p>Dokładne mycie i pielęgnacja podłóg – panele, płytki, parkiet. Efekt czystości bez smug i zacieków.</p>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon">🚿</div>
+          <h3>Czyszczenie łazienek</h3>
+          <p>Dezynfekcja i czyszczenie umywalek, wanien, kabin prysznicowych oraz armatury – higiena na najwyższym poziomie.</p>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon">🍽️</div>
+          <h3>Czyszczenie kuchni</h3>
+          <p>Odtłuszczanie blatów, szafek, sprzętu AGD oraz płytek – kuchnia czysta i gotowa do gotowania.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- O NAS -->
+  <section id="o-nas" class="about">
+    <div class="container about-inner">
+      <div class="about-text">
+        <h2 class="section-title">Dlaczego my?</h2>
+        <ul class="about-list">
+          <li>✅ Doświadczony i sprawdzony zespół</li>
+          <li>✅ Skuteczne i bezpieczne środki czystości</li>
+          <li>✅ Elastyczne terminy dopasowane do Ciebie</li>
+          <li>✅ Indywidualna wycena bez zobowiązań</li>
+        </ul>
+      </div>
+      <div class="about-visual" aria-hidden="true">
+        <div class="about-circle">🧴</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- KONTAKT / FORMULARZ WYCENY -->
+  <section id="kontakt" class="contact">
+    <div class="container contact-inner">
+      <div class="contact-info">
+        <h2 class="section-title">Zapytaj o wycenę</h2>
+        <p class="section-subtitle">Wypełnij formularz – odpowiemy z indywidualną propozycją cenową.</p>
+        <div class="contact-details">
+          <p><strong>Telefon:</strong> <span class="placeholder-text">(dane wkrótce)</span></p>
+          <p><strong>E-mail:</strong> <span class="placeholder-text">(dane wkrótce)</span></p>
+          <p><strong>Obszar działania:</strong> <span class="placeholder-text">(dane wkrótce)</span></p>
+        </div>
+      </div>
+
+      <form id="quote-form" class="quote-form" novalidate>
+        <div class="form-row">
+          <label for="name">Imię i nazwisko *</label>
+          <input type="text" id="name" name="name" required placeholder="Jan Kowalski">
+        </div>
+
+        <div class="form-row">
+          <label for="phone">Telefon *</label>
+          <input type="tel" id="phone" name="phone" required placeholder="+48 600 000 000">
+        </div>
+
+        <div class="form-row">
+          <label for="email">E-mail</label>
+          <input type="email" id="email" name="email" placeholder="jan.kowalski@example.com">
+        </div>
+
+        <div class="form-row">
+          <label for="service">Rodzaj usługi *</label>
+          <select id="service" name="service" required>
+            <option value="" disabled selected>Wybierz usługę</option>
+            <option value="sprzatanie-domowe">Sprzątanie domowe</option>
+            <option value="mycie-podlog">Mycie podłóg</option>
+            <option value="czyszczenie-lazienek">Czyszczenie łazienek</option>
+            <option value="czyszczenie-kuchni">Czyszczenie kuchni</option>
+            <option value="inne">Inne / kompleksowe</option>
+          </select>
+        </div>
+
+        <div class="form-row">
+          <label for="area">Metraż (m²)</label>
+          <input type="number" id="area" name="area" min="1" placeholder="np. 60">
+        </div>
+
+        <div class="form-row form-row-full">
+          <label for="message">Dodatkowe informacje</label>
+          <textarea id="message" name="message" rows="4" placeholder="Opisz zakres prac, preferowany termin itp."></textarea>
+        </div>
+
+        <div class="form-row form-row-full">
+          <button type="submit" class="btn btn-primary btn-full">Wyślij zapytanie</button>
+        </div>
+
+        <p id="form-status" class="form-status" role="status"></p>
+      </form>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="logo">
+        <span class="logo-icon">🧼</span>
+        <span class="logo-text">CzystyDom</span>
+      </div>
+      <p>&copy; <span id="year"></span> CzystyDom. Wszelkie prawa zastrzeżone.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
