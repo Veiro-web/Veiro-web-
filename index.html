@@ -160,12 +160,12 @@
 
         <div class="form-row">
           <label for="phone">Telefon *</label>
-          <input type="tel" id="phone" name="phone" required placeholder="+48 600 000 000">
+          <input type="tel" id="phone" name="phone" required inputmode="numeric" pattern="[0-9]{9,15}" minlength="9" maxlength="15" placeholder="600000000" title="Wpisz tylko cyfry, np. 600000000">
         </div>
 
         <div class="form-row">
-          <label for="email">E-mail</label>
-          <input type="email" id="email" name="email" placeholder="jan.kowalski@example.com">
+          <label for="email">E-mail *</label>
+          <input type="email" id="email" name="email" required pattern="[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}" placeholder="jan.kowalski@example.com" title="Wpisz poprawny adres e-mail, np. jan.kowalski@example.com">
         </div>
 
         <div class="form-row">
