@@ -12,7 +12,7 @@
   <header class="site-header">
     <div class="container header-inner">
       <div class="logo">
-        <span class="logo-icon">🧼</span>
+        <img src="assets/logo.jpg" alt="Sprzątanie Śląsk – logo" class="logo-img">
         <span class="logo-text">Sprzątanie Śląsk</span>
       </div>
       <nav class="nav">
@@ -44,35 +44,79 @@
   <section id="usugi" class="services">
     <div class="container">
       <h2 class="section-title">Nasze usługi</h2>
-      <p class="section-subtitle">Dbamy o każdy zakątek Twojego domu</p>
+      <p class="section-subtitle">Dbamy o każdy zakątek Twojego domu, biura i mieszkania</p>
 
-      <div class="services-grid">
-
-        <div class="service-card">
-          <div class="service-icon">🏠</div>
-          <h3>Sprzątanie domowe</h3>
-          <p>Regularne lub jednorazowe sprzątanie mieszkań i domów – odkurzanie, wycieranie powierzchni, porządkowanie pomieszczeń.</p>
+      <!-- Kategoria: Sprzątanie obiektów -->
+      <div class="service-category">
+        <h3 class="service-category-title">🏠 Sprzątanie mieszkań, domów i biur</h3>
+        <div class="services-grid">
+          <div class="service-card">
+            <div class="service-icon">🏠</div>
+            <h3>Sprzątanie mieszkań i domów</h3>
+            <p>Regularne lub jednorazowe sprzątanie – odkurzanie, wycieranie powierzchni, porządkowanie pomieszczeń.</p>
+          </div>
+          <div class="service-card">
+            <div class="service-icon">🏢</div>
+            <h3>Sprzątanie biur</h3>
+            <p>Utrzymanie czystości w biurach i lokalach firmowych – powierzchnie wspólne, stanowiska pracy, sanitariaty.</p>
+          </div>
         </div>
-
-        <div class="service-card">
-          <div class="service-icon">🧹</div>
-          <h3>Mycie podłóg</h3>
-          <p>Dokładne mycie i pielęgnacja podłóg – panele, płytki, parkiet. Efekt czystości bez smug i zacieków.</p>
-        </div>
-
-        <div class="service-card">
-          <div class="service-icon">🚿</div>
-          <h3>Czyszczenie łazienek</h3>
-          <p>Dezynfekcja i czyszczenie umywalek, wanien, kabin prysznicowych oraz armatury – higiena na najwyższym poziomie.</p>
-        </div>
-
-        <div class="service-card">
-          <div class="service-icon">🍽️</div>
-          <h3>Czyszczenie kuchni</h3>
-          <p>Odtłuszczanie blatów, szafek, sprzętu AGD oraz płytek – kuchnia czysta i gotowa do gotowania.</p>
-        </div>
-
       </div>
+
+      <!-- Kategoria: Czyszczenie i higiena -->
+      <div class="service-category">
+        <h3 class="service-category-title">🧽 Czyszczenie i higiena</h3>
+        <div class="services-grid">
+          <div class="service-card">
+            <div class="service-icon">🧹</div>
+            <h3>Mycie podłóg</h3>
+            <p>Dokładne mycie i pielęgnacja podłóg – panele, płytki, parkiet. Efekt czystości bez smug i zacieków.</p>
+          </div>
+          <div class="service-card">
+            <div class="service-icon">🚿</div>
+            <h3>Czyszczenie łazienek</h3>
+            <p>Dezynfekcja i czyszczenie umywalek, wanien, kabin prysznicowych oraz armatury – higiena na najwyższym poziomie.</p>
+          </div>
+          <div class="service-card">
+            <div class="service-icon">🍽️</div>
+            <h3>Czyszczenie kuchni i AGD</h3>
+            <p>Odtłuszczanie blatów, szafek oraz dokładne czyszczenie sprzętu AGD – kuchnia czysta i gotowa do użycia.</p>
+          </div>
+          <div class="service-card">
+            <div class="service-icon">🪟</div>
+            <h3>Mycie okien</h3>
+            <p>Czyszczenie szyb i ram okiennych – bez smug, z dostępem do najwyższych pomieszczeń.</p>
+          </div>
+          <div class="service-card">
+            <div class="service-icon">🦠</div>
+            <h3>Dezynfekcja powierzchni</h3>
+            <p>Skuteczna dezynfekcja klamek, blatów, wyłączników i innych często dotykanych powierzchni.</p>
+          </div>
+          <div class="service-card">
+            <div class="service-icon">🗑️</div>
+            <h3>Wynoszenie śmieci</h3>
+            <p>Regularne opróżnianie koszy i wynoszenie odpadów – porządek bez Twojego udziału.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Kategoria: Sprzątanie specjalne -->
+      <div class="service-category">
+        <h3 class="service-category-title">🛠️ Sprzątanie specjalne</h3>
+        <div class="services-grid">
+          <div class="service-card">
+            <div class="service-icon">🧱</div>
+            <h3>Sprzątanie po remoncie</h3>
+            <p>Usuwanie pyłu budowlanego, resztek materiałów i dokładne czyszczenie po zakończonych pracach remontowych.</p>
+          </div>
+          <div class="service-card">
+            <div class="service-icon">📦</div>
+            <h3>Sprzątanie po najmie</h3>
+            <p>Przygotowanie mieszkania lub domu do zdania lub odbioru – kompleksowe sprzątanie przy zmianie najemcy.</p>
+          </div>
+        </div>
+      </div>
+
     </div>
   </section>
 
@@ -101,8 +145,8 @@
         <h2 class="section-title">Zapytaj o wycenę</h2>
         <p class="section-subtitle">Wypełnij formularz – odpowiemy z indywidualną propozycją cenową.</p>
         <div class="contact-details">
-          <p><strong>Telefon:</strong> <span class="placeholder-text">(dane wkrótce)</span></p>
-          <p><strong>E-mail:</strong> <span class="placeholder-text">(dane wkrótce)</span></p>
+          <p><strong>Telefon:</strong> <a href="tel:+48516377014">516 377 014</a></p>
+          <p><strong>E-mail:</strong> <a href="mailto:sprzatanieslaskkontakt@gmail.com">sprzatanieslaskkontakt@gmail.com</a></p>
           <p><strong>Obszar działania:</strong> Śląsk i okolice</p>
         </div>
       </div>
@@ -127,10 +171,16 @@
           <label for="service">Rodzaj usługi *</label>
           <select id="service" name="service" required>
             <option value="" disabled selected>Wybierz usługę</option>
-            <option value="sprzatanie-domowe">Sprzątanie domowe</option>
+            <option value="sprzatanie-mieszkan-domow">Sprzątanie mieszkań i domów</option>
+            <option value="sprzatanie-biur">Sprzątanie biur</option>
             <option value="mycie-podlog">Mycie podłóg</option>
             <option value="czyszczenie-lazienek">Czyszczenie łazienek</option>
-            <option value="czyszczenie-kuchni">Czyszczenie kuchni</option>
+            <option value="czyszczenie-kuchni-agd">Czyszczenie kuchni i AGD</option>
+            <option value="mycie-okien">Mycie okien</option>
+            <option value="dezynfekcja">Dezynfekcja powierzchni</option>
+            <option value="wynoszenie-smieci">Wynoszenie śmieci</option>
+            <option value="po-remoncie">Sprzątanie po remoncie</option>
+            <option value="po-najmie">Sprzątanie po najmie</option>
             <option value="inne">Inne / kompleksowe</option>
           </select>
         </div>
@@ -158,7 +208,7 @@
   <footer class="site-footer">
     <div class="container footer-inner">
       <div class="logo">
-        <span class="logo-icon">🧼</span>
+        <img src="assets/logo.jpg" alt="Sprzątanie Śląsk – logo" class="logo-img">
         <span class="logo-text">Sprzątanie Śląsk</span>
       </div>
       <p>&copy; <span id="year"></span> Sprzątanie Śląsk. Wszelkie prawa zastrzeżone.</p>

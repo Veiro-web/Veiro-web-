@@ -95,7 +95,7 @@ ul {
 .logo {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
   font-weight: 800;
   font-size: 1.4rem;
   color: var(--blue-dark);
@@ -103,6 +103,14 @@ ul {
 
 .logo-icon {
   font-size: 1.6rem;
+}
+
+.logo-img {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
 }
 
 .nav {
@@ -247,6 +255,22 @@ ul {
   padding: 90px 0;
 }
 
+.service-category {
+  margin-bottom: 50px;
+}
+
+.service-category:last-child {
+  margin-bottom: 0;
+}
+
+.service-category-title {
+  font-size: 1.3rem;
+  color: var(--blue-dark);
+  margin-bottom: 24px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #d7ecf3;
+}
+
 .services-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -367,6 +391,16 @@ ul {
   font-size: 1.02rem;
 }
 
+.contact-details a {
+  color: var(--blue-dark);
+  font-weight: 600;
+  transition: color 0.2s ease;
+}
+
+.contact-details a:hover {
+  color: var(--green);
+}
+
 .placeholder-text {
   color: var(--text-muted);
   font-style: italic;
@@ -451,6 +485,10 @@ ul {
 
 .footer-inner .logo {
   color: var(--white);
+}
+
+.footer-inner .logo-img {
+  border: 2px solid rgba(255, 255, 255, 0.4);
 }
 
 .footer-inner p {
