@@ -241,7 +241,7 @@
   <!-- O NAS -->
   <section id="o-nas" class="about">
     <div class="about-media">
-      <img src="assets/photos/laundry-detail.jpg" alt="Detal pracy przy sprzątaniu">
+      <img src="assets/photos/vacuum-legs.jpg" alt="Odkurzanie podłogi w trakcie sprzątania">
     </div>
     <div class="about-content">
       <div class="about-inner">
@@ -336,13 +336,14 @@
 
         <div class="form-row">
           <label for="phone">Telefon *</label>
-          <input type="tel" id="phone" name="phone" required inputmode="numeric" pattern="[0-9]{9,15}" minlength="9" maxlength="15" placeholder="600000000" title="Wpisz tylko cyfry, np. 600000000">
+          <input type="tel" id="phone" name="phone" required inputmode="numeric" pattern="[0-9]{9}" minlength="9" maxlength="9" placeholder="600000000" title="Polski numer telefonu: 9 cyfr, np. 600000000">
+          <span class="field-warning" id="phone-warning" hidden>Podaj polski numer telefonu — 9 cyfr, np. 600000000 (bez +48).</span>
         </div>
 
         <div class="form-row">
           <label for="email">E-mail *</label>
           <input type="email" id="email" name="email" required pattern="[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}" placeholder="jan.kowalski@example.com" title="Wpisz poprawny adres e-mail, np. jan.kowalski@example.com">
-          <span class="field-hint">Podaj pełny adres z „@” i domeną, np. jan.kowalski@gmail.com — nie: jankowalski@gmail lub jankowalskigmail.com</span>
+          <span class="field-warning" id="email-warning" hidden>Podaj pełny adres z „@” i domeną, np. jan.kowalski@gmail.com — nie: jankowalski@gmail lub jankowalskigmail.com.</span>
         </div>
 
         <div class="form-row">
