@@ -232,7 +232,7 @@
         <div class="process-step">
           <span class="process-number">04</span>
           <h4>Efekt</h4>
-          <p>Sprawdzamy efekt razem, na miejscu — jeśli coś wymaga poprawki, zajmujemy się tym od razu, zanim wyjedziemy.</p>
+          <p>Sprawdzamy efekt razem, na miejscu.</p>
         </div>
       </div>
     </div>
@@ -343,23 +343,32 @@
           <span class="field-warning" id="email-warning" hidden>To nie wygląda na poprawny adres e-mail.</span>
         </div>
 
-        <div class="form-row">
-          <label for="service">Rodzaj usługi *</label>
-          <select id="service" name="service" required>
-            <option value="" disabled selected>Wybierz usługę</option>
-            <option value="sprzatanie-mieszkan-domow">Sprzątanie mieszkań i domów</option>
-            <option value="sprzatanie-biur">Sprzątanie biur</option>
-            <option value="mycie-podlog">Mycie podłóg</option>
-            <option value="czyszczenie-lazienek">Czyszczenie łazienek</option>
-            <option value="czyszczenie-kuchni-agd">Czyszczenie kuchni i AGD</option>
-            <option value="mycie-okien">Mycie okien</option>
-            <option value="dezynfekcja">Dezynfekcja powierzchni</option>
-            <option value="wynoszenie-smieci">Wynoszenie śmieci</option>
-            <option value="po-remoncie">Sprzątanie po remoncie</option>
-            <option value="po-najmie">Sprzątanie po najmie</option>
-            <option value="zakupy-dodatkowe">Zakupy / drobne czynności</option>
-            <option value="inne">Inne / kompleksowe</option>
-          </select>
+        <div class="form-row form-row-full">
+          <label>Rodzaj usługi — zaznacz jedną lub więcej *</label>
+          <div class="checkbox-groups">
+            <div class="checkbox-group">
+              <p class="checkbox-group-title">Sprzątanie standardowe</p>
+              <label class="checkbox-item"><input type="checkbox" name="uslugi[]" value="Sprzątanie mieszkania / domu"> Sprzątanie mieszkania / domu</label>
+              <label class="checkbox-item"><input type="checkbox" name="uslugi[]" value="Sprzątanie biura"> Sprzątanie biura</label>
+              <label class="checkbox-item"><input type="checkbox" name="uslugi[]" value="Mycie podłóg"> Mycie podłóg</label>
+              <label class="checkbox-item"><input type="checkbox" name="uslugi[]" value="Czyszczenie łazienki"> Czyszczenie łazienki</label>
+              <label class="checkbox-item"><input type="checkbox" name="uslugi[]" value="Czyszczenie kuchni i AGD"> Czyszczenie kuchni i AGD</label>
+              <label class="checkbox-item"><input type="checkbox" name="uslugi[]" value="Mycie okien"> Mycie okien</label>
+              <label class="checkbox-item"><input type="checkbox" name="uslugi[]" value="Dezynfekcja powierzchni"> Dezynfekcja powierzchni</label>
+              <label class="checkbox-item"><input type="checkbox" name="uslugi[]" value="Wynoszenie śmieci"> Wynoszenie śmieci</label>
+            </div>
+            <div class="checkbox-group">
+              <p class="checkbox-group-title">Po remoncie / najmie</p>
+              <label class="checkbox-item"><input type="checkbox" name="uslugi[]" value="Sprzątanie po remoncie"> Sprzątanie po remoncie</label>
+              <label class="checkbox-item"><input type="checkbox" name="uslugi[]" value="Sprzątanie po najmie"> Sprzątanie po najmie</label>
+            </div>
+            <div class="checkbox-group">
+              <p class="checkbox-group-title">Usługi dodatkowe</p>
+              <label class="checkbox-item"><input type="checkbox" name="uslugi[]" value="Zakupy / drobne czynności"> Zakupy / drobne czynności</label>
+              <label class="checkbox-item"><input type="checkbox" name="uslugi[]" value="Inne"> Inne (opisz w wiadomości)</label>
+            </div>
+          </div>
+          <span class="field-warning" id="service-warning" hidden>Zaznacz przynajmniej jedną usługę.</span>
         </div>
 
         <div class="form-row">

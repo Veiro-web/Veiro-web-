@@ -8,6 +8,8 @@ const phoneInput = document.getElementById('phone');
 const emailInput = document.getElementById('email');
 const phoneWarning = document.getElementById('phone-warning');
 const emailWarning = document.getElementById('email-warning');
+const serviceWarning = document.getElementById('service-warning');
+const serviceCheckboxes = form.querySelectorAll('input[name="uslugi[]"]');
 
 // Polski numer telefonu: dokładnie 9 cyfr (bez +48)
 const PHONE_PATTERN = /^[0-9]{9}$/;
@@ -46,13 +48,15 @@ form.addEventListener('submit', function (e) {
   const name = form.name.value.trim();
   const phone = phoneInput.value.trim();
   const email = emailInput.value.trim();
-  const service = form.service.value;
+  const anyServiceChecked = Array.from(serviceCheckboxes).some((cb) => cb.checked);
 
-  if (!name || !phone || !email || !service) {
-    status.textContent = 'Proszę wypełnić wszystkie wymagane pola (*).';
+  if (!name || !phone || !email || !anyServiceChecked) {
+    serviceWarning.hidden = anyServiceChecked;
+    status.textContent = 'Proszę wypełnić wszystkie wymagane pola (*) i zaznaczyć przynajmniej jedną usługę.';
     status.className = 'form-status error';
     return;
   }
+  serviceWarning.hidden = true;
 
   updatePhoneWarning();
   if (!PHONE_PATTERN.test(phone)) {
@@ -90,6 +94,7 @@ form.addEventListener('submit', function (e) {
         form.reset();
         phoneWarning.hidden = true;
         emailWarning.hidden = true;
+        serviceWarning.hidden = true;
       } else {
         return response.json().then((data) => {
           throw new Error(
