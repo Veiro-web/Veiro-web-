@@ -189,28 +189,52 @@ form.addEventListener('submit', function (e) {
 
 // ===== Umiarkowane animacje pojawiania się sekcji przy przewijaniu =====
 // Lekki IntersectionObserver — bez zewnętrznych bibliotek, nie obciąża strony.
+// Zasada bezpieczeństwa: treść NIGDY nie może zostać trwale ukryta. Jeśli cokolwiek
+// zawiedzie (brak wsparcia, błąd, element poza obserwacją) — pokazujemy wszystko.
 (function () {
-  const revealEls = document.querySelectorAll('.reveal');
+  const revealEls = Array.prototype.slice.call(document.querySelectorAll('.reveal'));
   if (!revealEls.length) return;
 
+  function showAll() {
+    revealEls.forEach(function (el) {
+      el.classList.add('is-visible');
+    });
+  }
+
   // Jeśli użytkownik woli ograniczony ruch lub brak wsparcia observera — pokaż od razu.
-  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const prefersReduced =
+    window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (prefersReduced || !('IntersectionObserver' in window)) {
-    revealEls.forEach((el) => el.classList.add('is-visible'));
+    showAll();
     return;
   }
 
-  const observer = new IntersectionObserver(
-    (entries, obs) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('is-visible');
-          obs.unobserve(entry.target);
-        }
-      });
-    },
-    { threshold: 0.12, rootMargin: '0px 0px -40px 0px' }
-  );
+  try {
+    const observer = new IntersectionObserver(
+      function (entries, obs) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            obs.unobserve(entry.target);
+          }
+        });
+      },
+      // threshold 0 = reaguj gdy tylko pojawi się jakikolwiek fragment elementu.
+      // rootMargin ujemny u dołu daje delikatne wyprzedzenie, ale bez ryzyka
+      // pominięcia elementów wyższych niż viewport.
+      { threshold: 0, rootMargin: '0px 0px -8% 0px' }
+    );
 
-  revealEls.forEach((el) => observer.observe(el));
+    revealEls.forEach(function (el) {
+      observer.observe(el);
+    });
+  } catch (err) {
+    // Gdyby cokolwiek poszło nie tak — nie zostawiaj pustej strony.
+    showAll();
+    return;
+  }
+
+  // Siatka bezpieczeństwa: najpóźniej po 2.5 s każdy element jest widoczny,
+  // nawet jeśli observer z jakiegoś powodu nie zadziałał.
+  window.setTimeout(showAll, 2500);
 })();
