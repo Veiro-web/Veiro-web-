@@ -1,5 +1,6 @@
 // ===== Mapa obszaru obsługi — Sprzątanie Śląsk =====
-// Centrum: Rynek w Katowicach. Promień standardowego obszaru obsługi: 75 km (w linii prostej).
+// Centrum: Rynek w Katowicach. Promień standardowego obszaru obsługi: 60 km (w linii prostej).
+// Mapa jest statyczna (bez zoomu/przesuwania) — zawsze widoczny jest ten sam obszar.
 
 (function () {
   if (typeof L === 'undefined') {
@@ -55,7 +56,7 @@
     return sum / 2;
   }
 
-  // --- Budowa okręgu 75 km jako wielokąta (żeby maska i granica idealnie się zgadzały) ---
+  // --- Budowa okręgu 60 km jako wielokąta (żeby maska i granica idealnie się zgadzały) ---
   const CIRCLE_POINTS = 144;
   const circleRing = [];
   for (let i = 0; i <= CIRCLE_POINTS; i++) {
@@ -63,13 +64,19 @@
     circleRing.push(destinationPoint(KATOWICE[0], KATOWICE[1], bearing, RADIUS_KM));
   }
 
-  // Duży prostokąt obejmujący widoczny obszar świata — tworzy "ramę" maski
+  // Prostokąt "ramy" maski — wystarczająco duży, by pokryć cały widoczny obszar mapy
+  // (z dużym zapasem), ale NIE obejmujący całego świata. Wcześniejsza wersja używała
+  // prostokąta od -180° do 180° długości geograficznej, co przy projekcji Web Mercator
+  // powodowało, że Leaflet nie był w stanie poprawnie narysować wielokąta z dziurą —
+  // to był właściwy powód, dla którego kolorowa nakładka wcale się nie pojawiała.
+  const FRAME_LAT = 10; // ± stopni szerokości wokół Katowic — pokrywa z naddatkiem całą mapę
+  const FRAME_LON = 16; // ± stopni długości wokół Katowic
   const outerRing = [
-    [85, -180],
-    [85, 180],
-    [-85, 180],
-    [-85, -180],
-    [85, -180],
+    [KATOWICE[0] + FRAME_LAT, KATOWICE[1] - FRAME_LON],
+    [KATOWICE[0] + FRAME_LAT, KATOWICE[1] + FRAME_LON],
+    [KATOWICE[0] - FRAME_LAT, KATOWICE[1] + FRAME_LON],
+    [KATOWICE[0] - FRAME_LAT, KATOWICE[1] - FRAME_LON],
+    [KATOWICE[0] + FRAME_LAT, KATOWICE[1] - FRAME_LON],
   ];
 
   // Otwór w masce musi mieć przeciwny kierunek nawijania niż rama, żeby faktycznie był "dziurą"
@@ -85,8 +92,18 @@
   // jakiekolwiek warstwy — w przeciwnym razie Leaflet nie jest w stanie ich
   // poprawnie wyrenderować (brak zdefiniowanej projekcji), co skutkowało
   // brakiem kolorowej nakładki obszaru obsługi.
+  // Mapa jest statyczna: brak możliwości przybliżania, oddalania i przesuwania —
+  // zawsze widoczny jest ten sam, stały obszar. Kliknięcie do wyboru lokalizacji
+  // (map.on('click', ...) poniżej) działa niezależnie od tych ustawień.
   const map = L.map('service-area-map', {
+    zoomControl: false,
     scrollWheelZoom: false,
+    doubleClickZoom: false,
+    boxZoom: false,
+    touchZoom: false,
+    keyboard: false,
+    dragging: false,
+    tap: false,
   }).setView(KATOWICE, 9);
 
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
