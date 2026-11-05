@@ -1216,4 +1216,13 @@ a.contact-detail:hover {
   .accordion-short {
     display: none;
   }
+
+  /* Mniejsze odstępy między Metrażem, zwierzętami i "Inne" na telefonie */
+  .conditional-section-inner {
+    gap: 10px;
+  }
+
+  .form-row-pair {
+    gap: 10px;
+  }
 }
