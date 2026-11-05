@@ -599,8 +599,8 @@ section[id] {
 
 .contact-inner {
   display: grid;
-  grid-template-columns: minmax(260px, 0.85fr) minmax(360px, 1.15fr) minmax(300px, 1fr);
-  gap: 40px;
+  grid-template-columns: minmax(280px, 0.8fr) minmax(360px, 1.2fr);
+  gap: 48px;
   align-items: start;
 }
 
@@ -1131,6 +1131,334 @@ a.contact-detail:hover {
   grid-column: 1 / -1;
 }
 
+/* ===== Wybór rodzaju sprzątania ===== */
+.cleaning-types {
+  padding: 100px 0;
+}
+
+.cleaning-types-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 26px;
+  align-items: stretch;
+}
+
+.cleaning-type-card {
+  display: flex;
+  flex-direction: column;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 34px 28px;
+  box-shadow: var(--shadow);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  position: relative;
+}
+
+.cleaning-type-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-lg);
+}
+
+.cleaning-type-card-featured {
+  border-color: var(--gold);
+  box-shadow: var(--shadow-lg), 0 0 0 1px rgba(201, 162, 75, 0.3);
+}
+
+.cleaning-type-badge {
+  position: absolute;
+  top: -13px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(135deg, var(--gold-light), var(--gold));
+  color: var(--navy);
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  padding: 5px 14px;
+  border-radius: 20px;
+  white-space: nowrap;
+}
+
+.cleaning-type-card h3 {
+  font-size: 1.25rem;
+  margin-bottom: 8px;
+}
+
+.cleaning-type-lead {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  margin-bottom: 20px;
+}
+
+.cleaning-type-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 28px;
+  flex-grow: 1;
+}
+
+.cleaning-type-list li {
+  position: relative;
+  padding-left: 26px;
+  font-size: 0.94rem;
+  color: var(--text-dark);
+  line-height: 1.45;
+}
+
+.cleaning-type-list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 6px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: rgba(201, 162, 75, 0.16);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23c9a24b' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12.5l4 4 10-10'/%3E%3C/svg%3E");
+  background-size: 11px;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+/* ===== Dlaczego warto nam zaufać ===== */
+.trust {
+  padding: 100px 0;
+  background: var(--bg-alt);
+}
+
+.trust .trust-grid {
+  margin-bottom: 64px;
+}
+
+.trust .trust-number {
+  color: var(--navy);
+}
+
+.trust .trust-label {
+  color: var(--text-muted);
+}
+
+.trust-feature {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: 0;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+  background: var(--navy);
+}
+
+.trust-feature-media {
+  overflow: hidden;
+  min-height: 340px;
+}
+
+.trust-feature-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.trust-feature-content {
+  padding: 52px 48px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.trust-feature-content h3 {
+  color: var(--white);
+  font-size: 1.5rem;
+  margin-bottom: 16px;
+}
+
+.trust-feature-content p {
+  color: rgba(255, 255, 255, 0.78);
+  font-size: 1rem;
+  margin-bottom: 24px;
+}
+
+.trust-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.trust-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 0.96rem;
+}
+
+.trust-list svg {
+  color: var(--gold-light);
+  flex-shrink: 0;
+  margin-top: 2px;
+  width: 22px;
+  height: 22px;
+}
+
+/* ===== Opinie i realizacje ===== */
+.reviews {
+  padding: 100px 0;
+}
+
+.reviews-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 26px;
+  margin-bottom: 64px;
+}
+
+.review-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 30px 26px;
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.review-stars {
+  display: flex;
+  gap: 3px;
+}
+
+.review-stars svg {
+  width: 20px;
+  height: 20px;
+  fill: var(--gold);
+}
+
+.review-category {
+  font-weight: 700;
+  font-size: 0.98rem;
+  color: var(--navy);
+  margin: 0;
+}
+
+.review-text {
+  color: var(--text-dark);
+  font-size: 0.98rem;
+  font-style: italic;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.review-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 2px;
+}
+
+.review-tags span {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 4px 12px;
+}
+
+.review-meta {
+  margin: 4px 0 0;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+.review-meta strong {
+  color: var(--navy);
+}
+
+.reviews-gallery-title {
+  text-align: center;
+  font-size: 1.3rem;
+  color: var(--navy);
+  margin-bottom: 26px;
+}
+
+.reviews .gallery {
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+/* ===== Obszar działania i mapa ===== */
+.area {
+  padding: 100px 0;
+  background: var(--bg-alt);
+}
+
+.area .map-panel {
+  max-width: 820px;
+  margin: 0 auto;
+}
+
+.area #service-area-map {
+  aspect-ratio: 16 / 10;
+  max-height: 520px;
+}
+
+/* ===== Przycisk outline (warianty sprzątania) ===== */
+.btn-outline {
+  background: transparent;
+  color: var(--navy);
+  border: 1.5px solid var(--navy-light);
+}
+
+.btn-outline:hover {
+  background: var(--navy);
+  color: var(--white);
+  border-color: var(--navy);
+}
+
+/* ===== Animacja pojawiania się sekcji przy przewijaniu ===== */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+  will-change: opacity, transform;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* Lekkie opóźnienie kaskadowe dla kart w gridach */
+.cleaning-type-card:nth-child(2),
+.service-card:nth-child(2),
+.review-card:nth-child(2),
+.process-step:nth-child(2) {
+  transition-delay: 0.08s;
+}
+
+.cleaning-type-card:nth-child(3),
+.service-card:nth-child(3),
+.review-card:nth-child(3),
+.process-step:nth-child(3) {
+  transition-delay: 0.16s;
+}
+
+.process-step:nth-child(4) {
+  transition-delay: 0.24s;
+}
+
+/* Szacunek dla preferencji ograniczenia ruchu */
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
 /* ===== Responsive ===== */
 @media (max-width: 960px) {
   .about {
@@ -1158,6 +1486,29 @@ a.contact-detail:hover {
 
   .gallery {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  .cleaning-types-grid,
+  .reviews-grid {
+    grid-template-columns: 1fr;
+    gap: 22px;
+  }
+
+  .cleaning-type-card-featured {
+    order: -1;
+  }
+
+  .trust-feature {
+    grid-template-columns: 1fr;
+  }
+
+  .trust-feature-media {
+    min-height: 240px;
+    max-height: 300px;
+  }
+
+  .trust-feature-content {
+    padding: 40px 32px;
   }
 
   .footer-inner {
