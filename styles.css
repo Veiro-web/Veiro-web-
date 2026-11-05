@@ -1682,7 +1682,7 @@ section[id] {
 
   .quote-form {
     grid-template-columns: 1fr;
-    padding: 24px 18px;
+    padding: 28px;
   }
 
   .trust-grid,
@@ -1716,35 +1716,39 @@ section[id] {
     display: none;
   }
 
-  /* Karty "Rodzaj sprzątania" zostają w jednym wierszu także na telefonie —
-     mniejsza czcionka i odstępy, żeby się zmieściły */
+  /* Na telefonie karty "Rodzaj sprzątania" wracają do jednej kolumny —
+     przy 3 wąskich kolumnach rozwinięty opis robił bardzo wysoką, nieczytelną kartę. */
   .accordion-horizontal {
-    gap: 6px;
+    grid-template-columns: 1fr;
+    gap: 12px;
   }
 
   .accordion-horizontal .accordion-header {
-    padding: 10px 7px;
-    gap: 6px;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 16px;
+    gap: 14px;
   }
 
   .accordion-horizontal .accordion-title {
-    font-size: 0.7rem;
-    line-height: 1.25;
+    font-size: 0.98rem;
+    line-height: normal;
   }
 
   .accordion-horizontal .accordion-chevron {
-    width: 14px;
-    height: 14px;
-    align-self: flex-end;
-    margin-top: -4px;
+    width: 18px;
+    height: 18px;
+    align-self: center;
+    margin-top: 0;
   }
 
   .accordion-horizontal .accordion-panel-inner {
-    padding: 0 8px 10px;
+    padding: 0 16px 16px;
   }
 
   .accordion-horizontal .accordion-list li {
-    font-size: 0.78rem;
+    font-size: 0.9rem;
   }
 
   .form-contact-details {
