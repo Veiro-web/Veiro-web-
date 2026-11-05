@@ -50,7 +50,7 @@ form.addEventListener('submit', function (e) {
   const email = emailInput.value.trim();
   const anyServiceChecked = Array.from(serviceCheckboxes).some((cb) => cb.checked);
 
-  if (!name || !phone || !email || !anyServiceChecked) {
+  if (!name || !phone || !anyServiceChecked) {
     serviceWarning.hidden = anyServiceChecked;
     status.textContent = 'Proszę wypełnić wszystkie wymagane pola (*) i zaznaczyć przynajmniej jedną usługę.';
     status.className = 'form-status error';
@@ -66,8 +66,9 @@ form.addEventListener('submit', function (e) {
     return;
   }
 
+  // E-mail jest opcjonalny — walidujemy format tylko, jeśli coś wpisano
   updateEmailWarning();
-  if (!EMAIL_PATTERN.test(email)) {
+  if (email && !EMAIL_PATTERN.test(email)) {
     status.textContent = 'Podaj poprawny adres e-mail, np. jan.kowalski@example.com.';
     status.className = 'form-status error';
     emailInput.focus();

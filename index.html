@@ -23,9 +23,11 @@
         <span class="logo-text">Sprzątanie Śląsk</span>
       </a>
       <nav class="nav">
-        <a href="#usugi">Usługi</a>
-        <a href="#jak-dzialamy">Jak działamy</a>
-        <a href="#o-nas">O nas</a>
+        <div class="nav-links">
+          <a href="#usugi">Usługi</a>
+          <a href="#jak-dzialamy">Jak działamy</a>
+          <a href="#o-nas">O nas</a>
+        </div>
         <a href="#kontakt" class="nav-cta">Bezpłatna wycena</a>
       </nav>
     </div>
@@ -71,7 +73,7 @@
         <span class="trust-label">podwykonawców —<br>sprzątamy sami</span>
       </div>
       <div class="trust-item">
-        <span class="trust-number">20%</span>
+        <span class="trust-number">15%</span>
         <span class="trust-label">maks. rabat przy<br>pierwszym zleceniu</span>
       </div>
     </div>
@@ -282,11 +284,11 @@
   <!-- PROMOCJA -->
   <section class="promo">
     <div class="container promo-inner">
-      <h2 class="promo-title">Do 20% zniżki</h2>
+      <h2 class="promo-title">-15% zniżki</h2>
       <p class="promo-subtitle">Rabaty łączą się — sprawdź, na co się kwalifikujesz</p>
       <div class="promo-chips promo-chips-2">
         <div class="promo-chip">
-          <span class="promo-percent">-15%</span>
+          <span class="promo-percent">-10%</span>
           <span class="promo-label">na pierwsze sprzątanie</span>
         </div>
         <div class="promo-chip">
@@ -338,8 +340,8 @@
         </div>
 
         <div class="form-row">
-          <label for="email">E-mail *</label>
-          <input type="email" id="email" name="email" required pattern="[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}" placeholder="jan.kowalski@example.com" title="Wpisz poprawny adres e-mail, np. jan.kowalski@example.com">
+          <label for="email">E-mail (opcjonalnie)</label>
+          <input type="email" id="email" name="email" pattern="[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}" placeholder="jan.kowalski@example.com" title="Wpisz poprawny adres e-mail, np. jan.kowalski@example.com">
           <span class="field-warning" id="email-warning" hidden>To nie wygląda na poprawny adres e-mail.</span>
         </div>
 
