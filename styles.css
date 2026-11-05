@@ -1429,15 +1429,19 @@ a.contact-detail:hover {
   border-color: var(--navy);
 }
 
-/* ===== Animacja pojawiania się sekcji przy przewijaniu ===== */
-.reveal {
+/* ===== Animacja pojawiania się sekcji przy przewijaniu =====
+   Zasada: treść jest DOMYŚLNIE widoczna. Dopiero gdy JS potwierdzi, że
+   observer działa, dodaje na <html> klasę .reveal-on — wtedy elementy
+   startują ukryte i pojawiają się przy przewijaniu. Jeśli JS zawiedzie,
+   nic nie zostaje ukryte. */
+.reveal-on .reveal {
   opacity: 0;
   transform: translateY(24px);
   transition: opacity 0.6s ease, transform 0.6s ease;
   will-change: opacity, transform;
 }
 
-.reveal.is-visible {
+.reveal-on .reveal.is-visible {
   opacity: 1;
   transform: none;
 }
@@ -1463,7 +1467,7 @@ a.contact-detail:hover {
 
 /* Szacunek dla preferencji ograniczenia ruchu */
 @media (prefers-reduced-motion: reduce) {
-  .reveal {
+  .reveal-on .reveal {
     opacity: 1;
     transform: none;
     transition: none;

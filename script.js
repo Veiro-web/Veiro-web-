@@ -195,46 +195,59 @@ form.addEventListener('submit', function (e) {
   const revealEls = Array.prototype.slice.call(document.querySelectorAll('.reveal'));
   if (!revealEls.length) return;
 
+  function markVisible(el) {
+    el.classList.add('is-visible');
+  }
   function showAll() {
-    revealEls.forEach(function (el) {
-      el.classList.add('is-visible');
-    });
+    revealEls.forEach(markVisible);
   }
 
-  // Jeśli użytkownik woli ograniczony ruch lub brak wsparcia observera — pokaż od razu.
   const prefersReduced =
     window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Bez wsparcia observera lub przy preferencji ograniczonego ruchu — NIE włączamy
+  // trybu ukrywania; treść pozostaje normalnie widoczna (bez animacji).
   if (prefersReduced || !('IntersectionObserver' in window)) {
-    showAll();
     return;
+  }
+
+  // Od tego momentu elementy .reveal startują ukryte (klasa na <html>).
+  const root = document.documentElement;
+  root.classList.add('reveal-on');
+
+  function reveal(el, obs) {
+    markVisible(el);
+    if (obs) obs.unobserve(el);
   }
 
   try {
     const observer = new IntersectionObserver(
       function (entries, obs) {
         entries.forEach(function (entry) {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('is-visible');
-            obs.unobserve(entry.target);
-          }
+          if (entry.isIntersecting) reveal(entry.target, obs);
         });
       },
-      // threshold 0 = reaguj gdy tylko pojawi się jakikolwiek fragment elementu.
-      // rootMargin ujemny u dołu daje delikatne wyprzedzenie, ale bez ryzyka
-      // pominięcia elementów wyższych niż viewport.
       { threshold: 0, rootMargin: '0px 0px -8% 0px' }
     );
 
+    const vh = window.innerHeight || document.documentElement.clientHeight;
     revealEls.forEach(function (el) {
-      observer.observe(el);
+      // Elementy, które już są w polu widzenia (lub nad nim) przy starcie,
+      // pokaż natychmiast — nie czekaj na zdarzenie przewijania.
+      const top = el.getBoundingClientRect().top;
+      if (top < vh * 0.95) {
+        markVisible(el);
+      } else {
+        observer.observe(el);
+      }
     });
   } catch (err) {
-    // Gdyby cokolwiek poszło nie tak — nie zostawiaj pustej strony.
+    // Gdyby cokolwiek poszło nie tak — pokaż wszystko, nie zostawiaj pustej strony.
     showAll();
     return;
   }
 
-  // Siatka bezpieczeństwa: najpóźniej po 2.5 s każdy element jest widoczny,
-  // nawet jeśli observer z jakiegoś powodu nie zadziałał.
-  window.setTimeout(showAll, 2500);
+  // Siatka bezpieczeństwa: gdyby observer z jakiegoś powodu nie zadziałał,
+  // najpóźniej po 3 s cała treść jest widoczna.
+  window.setTimeout(showAll, 3000);
 })();
