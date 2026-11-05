@@ -7,6 +7,7 @@
 
 :root {
   /* Paleta premium: granat + złoto */
+  --navy-deep: #070f1c;
   --navy: #0f1d33;
   --navy-2: #16233d;
   --navy-light: #24345a;
@@ -624,7 +625,7 @@ a.contact-detail:hover {
 
 .quote-form {
   flex: 1 1 440px;
-  background: linear-gradient(150deg, var(--navy) 0%, var(--navy-2) 100%);
+  background: linear-gradient(150deg, var(--navy-deep) 0%, var(--navy) 100%);
   padding: 40px;
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-lg);
@@ -826,7 +827,7 @@ a.contact-detail:hover {
 /* ===== Panel mapy obszaru obsługi ===== */
 .map-panel {
   flex: 1 1 380px;
-  background: linear-gradient(150deg, var(--navy) 0%, var(--navy-2) 100%);
+  background: linear-gradient(150deg, var(--navy-deep) 0%, var(--navy) 100%);
   padding: 32px;
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-lg);

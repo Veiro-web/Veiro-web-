@@ -81,9 +81,13 @@
   const mapEl = document.getElementById('service-area-map');
   if (!mapEl) return;
 
+  // WAŻNE: mapa musi mieć ustawiony początkowy widok (center+zoom) ZANIM dodamy
+  // jakiekolwiek warstwy — w przeciwnym razie Leaflet nie jest w stanie ich
+  // poprawnie wyrenderować (brak zdefiniowanej projekcji), co skutkowało
+  // brakiem kolorowej nakładki obszaru obsługi.
   const map = L.map('service-area-map', {
     scrollWheelZoom: false,
-  });
+  }).setView(KATOWICE, 9);
 
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 18,
@@ -126,8 +130,12 @@
   // Zamiast fitBounds (które może zostawić nadmiarowy margines, gdy proporcje
   // kontenera nie zgadzają się z proporcjami obszaru) — liczymy dopasowany
   // zoom i jawnie centrujemy widok na Katowicach.
-  const fitZoom = map.getBoundsZoom(bounds, false);
-  map.setView(KATOWICE, fitZoom);
+  try {
+    const fitZoom = map.getBoundsZoom(bounds, false);
+    map.setView(KATOWICE, fitZoom);
+  } catch (err) {
+    // Jeśli przeliczenie zoomu się nie powiedzie, zostajemy przy widoku startowym (9) — mapa i tak działa.
+  }
 
   // --- Znacznik Katowic (centrum) ---
   const katowiceIcon = L.divIcon({

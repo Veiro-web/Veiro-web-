@@ -12,6 +12,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Sprzątanie Śląsk – Profesjonalne sprzątanie mieszkań, domów i biur</title>
 <meta name="description" content="Sprzątanie mieszkań, domów i biur na terenie Śląska. Sprzątamy bezpośrednio, bez pośredników i agencji. Indywidualna, bezpłatna wycena.">
+<link rel="icon" type="image/jpeg" href="assets/logo.jpg">
+<link rel="apple-touch-icon" href="assets/logo.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -427,6 +429,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
         <!-- Poniższe pola są widoczne od razu, niezależnie od wyboru rodzaju sprzątania -->
         <div class="form-row form-row-full">
+          <label class="checkbox-item-standalone" for="pets-checkbox">
+            <input type="checkbox" id="pets-checkbox" name="zwierzeta" value="Tak">
+            <span>Obecność zwierząt domowych</span>
+          </label>
+        </div>
+
+        <div class="form-row form-row-full">
           <label>Rodzaj obiektu *</label>
           <div class="tile-group" id="object-type-tiles">
             <button type="button" class="tile-option" data-value="Mieszkanie">Mieszkanie</button>
@@ -438,17 +447,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <span class="field-warning" id="object-type-warning" hidden>Wybierz rodzaj obiektu.</span>
         </div>
 
-        <div class="form-row-pair">
-          <div class="form-row">
-            <label for="area">Metraż (m²)</label>
-            <input type="number" id="area" name="area" min="1" step="1" inputmode="numeric" placeholder="Np. 60">
-          </div>
-          <div class="form-row form-row-checkbox">
-            <label class="checkbox-item checkbox-item-standalone" for="pets-checkbox">
-              <input type="checkbox" id="pets-checkbox" name="zwierzeta" value="Tak">
-              <span>Obecność zwierząt domowych</span>
-            </label>
-          </div>
+        <div class="form-row form-row-full">
+          <label for="area">Metraż (m²)</label>
+          <input type="number" id="area" name="area" min="1" step="1" inputmode="numeric" placeholder="Np. 60">
         </div>
 
         <div class="form-row form-row-full">
