@@ -215,7 +215,7 @@ section[id] {
 .hero-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(115deg, rgba(15, 29, 51, 0.93) 0%, rgba(15, 29, 51, 0.82) 45%, rgba(15, 29, 51, 0.55) 100%);
+  background: linear-gradient(115deg, rgba(15, 29, 51, 0.95) 0%, rgba(15, 29, 51, 0.88) 45%, rgba(15, 29, 51, 0.68) 100%);
 }
 
 .hero-inner {
@@ -239,6 +239,7 @@ section[id] {
   line-height: 1.15;
   color: var(--white);
   margin-bottom: 24px;
+  text-shadow: 0 2px 16px rgba(7, 15, 28, 0.45);
 }
 
 .hero h1 span {
@@ -247,18 +248,20 @@ section[id] {
 
 .hero-subtitle {
   font-size: 1.3rem;
-  font-weight: 600;
+  font-weight: 700;
   line-height: 1.35;
   color: var(--gold-light);
   margin-bottom: 18px;
   max-width: 560px;
+  text-shadow: 0 1px 12px rgba(7, 15, 28, 0.75), 0 0 4px rgba(7, 15, 28, 0.6);
 }
 
 .hero-text {
   font-size: 1.08rem;
-  color: rgba(255, 255, 255, 0.82);
+  color: rgba(255, 255, 255, 0.88);
   margin-bottom: 34px;
   max-width: 560px;
+  text-shadow: 0 1px 10px rgba(7, 15, 28, 0.6);
 }
 
 .hero-actions {
