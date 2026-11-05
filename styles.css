@@ -123,6 +123,12 @@ h1, h2, h3, h4 {
   box-shadow: 0 1px 0 var(--border);
 }
 
+/* Prevent section headings from being hidden behind the sticky header
+   when navigating via in-page anchor links (#usugi, #kontakt, etc.) */
+section[id] {
+  scroll-margin-top: 100px;
+}
+
 .header-inner {
   display: flex;
   align-items: center;
@@ -1190,6 +1196,10 @@ a.contact-detail:hover {
 
   .header-inner {
     height: 64px;
+  }
+
+  section[id] {
+    scroll-margin-top: 80px;
   }
 
   .logo {
