@@ -1225,4 +1225,15 @@ a.contact-detail:hover {
   .form-row-pair {
     gap: 10px;
   }
+
+  /* Naprawa: flex-basis 180px był myślany jako MIN-SZEROKOŚĆ (układ w rzędzie na desktopie).
+     Po przełączeniu na układ kolumnowy na telefonie ta sama wartość zaczynała wymuszać
+     WYSOKOŚĆ 180px każdego pola, tworząc ogromne puste przestrzenie. */
+  .form-row-pair .form-row {
+    flex: 0 1 auto;
+  }
+
+  .form-row-checkbox {
+    justify-content: flex-start;
+  }
 }
