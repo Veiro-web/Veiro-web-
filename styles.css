@@ -239,6 +239,15 @@ h1, h2, h3, h4 {
   color: var(--gold-light);
 }
 
+.hero-subtitle {
+  font-size: 1.3rem;
+  font-weight: 600;
+  line-height: 1.35;
+  color: var(--gold-light);
+  margin-bottom: 18px;
+  max-width: 560px;
+}
+
 .hero-text {
   font-size: 1.08rem;
   color: rgba(255, 255, 255, 0.82);
@@ -1195,6 +1204,16 @@ a.contact-detail:hover {
 
   .hero h1 {
     font-size: 2.1rem;
+  }
+
+  .hero-subtitle {
+    font-size: 1.05rem;
+    margin-bottom: 14px;
+  }
+
+  .hero-text {
+    font-size: 1rem;
+    margin-bottom: 28px;
   }
 
   .hero-inner {
