@@ -1405,6 +1405,27 @@ a.contact-detail:hover {
   overflow: hidden;
 }
 
+/* Brak section-subtitle w tej sekcji — nadrabiamy odstęp pod nagłówkiem */
+.reviews .section-title {
+  margin-bottom: 48px;
+}
+
+/* Galeria z jednym, prawdziwym zdjęciem (więcej dodamy w przyszłości) */
+.gallery-single {
+  max-width: 460px;
+  margin: 0 auto;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+
+.gallery-single img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3.3;
+  object-fit: cover;
+}
+
 /* ===== Obszar działania i mapa ===== */
 .area {
   padding: 100px 0;
@@ -1700,6 +1721,24 @@ a.contact-detail:hover {
 
 .service-hero--reverse .service-hero-media {
   order: 2;
+}
+
+/* Wariant bez zdjęcia w hero (do czasu dodania własnych fotografii) —
+   treść wyśrodkowana, bez pustej kolumny po prawej/lewej stronie. */
+.service-hero--text-only .service-hero-grid {
+  grid-template-columns: 1fr;
+  max-width: 700px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.service-hero--text-only .service-hero-lead {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.service-hero--text-only .service-hero-actions {
+  justify-content: center;
 }
 
 .service-badge {
