@@ -658,8 +658,13 @@ section[id] {
   flex-shrink: 0;
 }
 
-a.contact-detail:hover {
-  color: var(--gold-light);
+/* Efekt hover tylko na urządzeniach z prawdziwą myszką — na dotyku tap i tak
+   natychmiast otwiera aplikację (tel/mail), więc "podświetlenie przed przejściem"
+   tylko migałoby bez sensu. */
+@media (hover: hover) {
+  a.contact-detail:hover {
+    color: var(--gold-light);
+  }
 }
 
 .quote-form {
@@ -1677,7 +1682,7 @@ a.contact-detail:hover {
 
   .quote-form {
     grid-template-columns: 1fr;
-    padding: 28px;
+    padding: 24px 18px;
   }
 
   .trust-grid,
@@ -1711,20 +1716,35 @@ a.contact-detail:hover {
     display: none;
   }
 
-  /* Na telefonie karty "Rodzaj sprzątania" wracają do jednej kolumny — 3 wąskie kolumny się nie zmieszczą */
+  /* Karty "Rodzaj sprzątania" zostają w jednym wierszu także na telefonie —
+     mniejsza czcionka i odstępy, żeby się zmieściły */
   .accordion-horizontal {
-    grid-template-columns: 1fr;
+    gap: 6px;
   }
 
   .accordion-horizontal .accordion-header {
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
+    padding: 10px 7px;
+    gap: 6px;
+  }
+
+  .accordion-horizontal .accordion-title {
+    font-size: 0.7rem;
+    line-height: 1.25;
   }
 
   .accordion-horizontal .accordion-chevron {
-    align-self: center;
-    margin-top: 0;
+    width: 14px;
+    height: 14px;
+    align-self: flex-end;
+    margin-top: -4px;
+  }
+
+  .accordion-horizontal .accordion-panel-inner {
+    padding: 0 8px 10px;
+  }
+
+  .accordion-horizontal .accordion-list li {
+    font-size: 0.78rem;
   }
 
   .form-contact-details {
