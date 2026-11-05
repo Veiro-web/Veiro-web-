@@ -20,7 +20,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
 <!-- Cloudflare Web Analytics -->
 <script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "cde91d074a4e402f97309ad45cde456e"}'></script>
 <!-- End Cloudflare Web Analytics -->
@@ -41,7 +40,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <nav class="nav">
         <div class="nav-links">
           <a href="#rodzaje">Rodzaje sprzątania</a>
-          <a href="#usugi">Usługi</a>
           <a href="#opinie">Opinie</a>
           <a href="#jak-dzialamy">Jak działamy</a>
         </div>
@@ -192,120 +190,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
   </section>
 
-  <!-- 4. USŁUGI DODATKOWE -->
-  <section id="usugi" class="services">
-    <div class="container">
-      <p class="section-kicker reveal">Pełen zakres</p>
-      <h2 class="section-title reveal">Usługi dodatkowe</h2>
-      <p class="section-subtitle reveal">
-        Poza standardowym sprzątaniem zajmujemy się też czyszczeniem specjalistycznym
-        i drobnymi usługami przy okazji wizyty — wszystko ustalamy podczas bezpłatnej wyceny.
-      </p>
-
-      <div class="service-category reveal">
-        <h3 class="service-category-title">Sprzątanie obiektów</h3>
-        <div class="services-grid">
-          <div class="service-card">
-            <div class="service-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 11.5 12 4l8.5 7.5"/><path d="M5.5 10v9a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-9"/><path d="M9.5 20v-5a1 1 0 0 1 1-1h3a1 1 0 0 1 1 1v5"/></svg>
-            </div>
-            <h4>Sprzątanie mieszkań i domów</h4>
-            <p>Odkurzanie i mycie podłóg, czyszczenie powierzchni, kurz na meblach i parapetach. Sprzątamy kawalerki i duże domy — zakres i czas ustalamy razem z Tobą.</p>
-          </div>
-          <div class="service-card">
-            <div class="service-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3.5" width="10" height="17" rx="0.8"/><path d="M14 20V9l6 2.2V20"/><path d="M7 7.2h1.2M10.8 7.2H12M7 10.6h1.2M10.8 10.6H12M7 14h1.2M10.8 14H12M7 17.3h1.2M10.8 17.3H12"/></svg>
-            </div>
-            <h4>Sprzątanie biur</h4>
-            <p>Powierzchnie wspólne, biurka, kuchnie biurowe i sanitariaty. Pracujemy w godzinach dogodnych dla Twojej firmy — także wcześnie rano lub wieczorem.</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="service-category reveal">
-        <h3 class="service-category-title">Czyszczenie i higiena</h3>
-        <div class="services-grid">
-          <div class="service-card">
-            <div class="service-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M15.5 3 8 10.5"/><path d="M6.5 12c-1.4 1.4-2 3.6-1.2 4.4.8.8 3-.2 4.4-1.6"/><path d="M9.7 9.3 14.7 14.3"/><path d="M4 20.5h16"/></svg>
-            </div>
-            <h4>Mycie podłóg</h4>
-            <p>Panele, płytki, parkiet, gres — dobieramy środki do konkretnej powierzchni, żeby nie zostawić smug ani zarysowań.</p>
-          </div>
-          <div class="service-card">
-            <div class="service-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11.5h16"/><path d="M5 11.5V6.8A1.8 1.8 0 0 1 6.8 5h.4a1.8 1.8 0 0 1 1.8 1.8v.6"/><path d="M4.5 11.5 5 17a2 2 0 0 0 2 1.8h10a2 2 0 0 0 2-1.8l.5-5.5"/><path d="M8.5 19v1.6M15.5 19v1.6"/></svg>
-            </div>
-            <h4>Czyszczenie łazienek</h4>
-            <p>Dezynfekcja umywalek, wanien, kabin prysznicowych, fug i armatury. Usuwamy kamień i osady, na które domowe środki już nie działają.</p>
-          </div>
-          <div class="service-card">
-            <div class="service-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 9.5V4"/><path d="M7.5 4v5.5"/><path d="M5 4v3.2a1.25 1.25 0 0 0 2.5 0V4"/><path d="M6.25 9.5V20"/><path d="M13 4c2.8 0 5 3 5 6.6 0 2-1 3.3-2.4 3.9L16 20h-6l.4-5.5C9 13.9 8 12.6 8 10.6 8 7 10.2 4 13 4Z"/></svg>
-            </div>
-            <h4>Czyszczenie kuchni i AGD</h4>
-            <p>Odtłuszczanie blatów i szafek, mycie płyty, czyszczenie piekarnika, mikrofalówki i lodówki od wewnątrz — miejsca, na które zwykle nie ma czasu.</p>
-          </div>
-          <div class="service-card">
-            <div class="service-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4.5" y="3.5" width="15" height="17" rx="1"/><path d="M12 3.5v17M4.5 12h15"/></svg>
-            </div>
-            <h4>Mycie okien</h4>
-            <p>Szyby, ramy i parapety — od pojedynczych okien do całych mieszkań. Umawiamy się też na mycie okien balkonowych i drzwi tarasowych.</p>
-          </div>
-          <div class="service-card">
-            <div class="service-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5c2.2 2.6 5 6.4 5 9.6a5 5 0 0 1-10 0c0-3.2 2.8-7 5-9.6Z"/><path d="M9.6 14.4a2.4 2.4 0 0 0 2.4 2.4"/></svg>
-            </div>
-            <h4>Dezynfekcja powierzchni</h4>
-            <p>Klamki, włączniki, blaty, uchwyty — miejsca dotykane najczęściej. Polecane po chorobie w domu, przed przyjęciem gości lub po prostu regularnie.</p>
-          </div>
-          <div class="service-card">
-            <div class="service-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 7h14"/><path d="M9 7V5.2A1.2 1.2 0 0 1 10.2 4h3.6A1.2 1.2 0 0 1 15 5.2V7"/><path d="M6.5 7l1 12.2a1.5 1.5 0 0 0 1.5 1.4h6a1.5 1.5 0 0 0 1.5-1.4l1-12.2"/><path d="M10 10.8v6M14 10.8v6"/></svg>
-            </div>
-            <h4>Wynoszenie śmieci</h4>
-            <p>Opróżnianie koszy i wynoszenie odpadów w ramach każdej wizyty — bez dodatkowych ustaleń i dopłat.</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="service-category reveal">
-        <h3 class="service-category-title">Sprzątanie specjalne</h3>
-        <div class="services-grid">
-          <div class="service-card">
-            <div class="service-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 3.5 20.5 9.5"/><path d="M13 5 5 13l1 5 5 1 8-8"/><path d="M4 20l2.5-2.5"/></svg>
-            </div>
-            <h4>Sprzątanie po remoncie</h4>
-            <p>Pył budowlany, resztki kleju i farby, zabrudzenia na oknach i podłogach. Pracujemy zwykle w dwóch etapach: zgrubne czyszczenie, potem dokładne domycie.</p>
-          </div>
-          <div class="service-card">
-            <div class="service-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="14" r="4"/><path d="M11 11 19 3"/><path d="M16 6l2.5 2.5M14 8l2 2"/></svg>
-            </div>
-            <h4>Sprzątanie po najmie</h4>
-            <p>Przygotowanie lokalu do zdania lub odbioru — tak, żeby rozliczenie z właścicielem lub najemcą przebiegło bez zastrzeżeń.</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="service-category reveal">
-        <h3 class="service-category-title">Przy okazji wizyty</h3>
-        <div class="services-grid">
-          <div class="service-card">
-            <div class="service-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8h12l-1.2 10.4a2 2 0 0 1-2 1.6H9.2a2 2 0 0 1-2-1.6L6 8Z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>
-            </div>
-            <h4>Zakupy i drobne czynności</h4>
-            <p>Przy okazji wizyty możemy zrobić dla Ciebie zakupy, odebrać przesyłkę albo wykonać inną drobną czynność — wystarczy powiedzieć, czego potrzebujesz przy wycenie.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 5. OPINIE I REALIZACJE -->
+  <!-- 4. OPINIE I REALIZACJE -->
   <section id="opinie" class="reviews">
     <div class="container">
       <p class="section-kicker reveal">Opinie i realizacje</p>
@@ -375,7 +260,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
   </section>
 
-  <!-- 6. JAK DZIAŁAMY -->
+  <!-- 5. JAK DZIAŁAMY -->
   <section id="jak-dzialamy" class="process">
     <div class="container">
       <p class="section-kicker reveal">Proces współpracy</p>
@@ -425,28 +310,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
   </section>
 
-  <!-- 7. OBSZAR DZIAŁANIA I MAPA -->
-  <section id="obszar" class="area">
-    <div class="container">
-      <p class="section-kicker reveal">Gdzie sprzątamy</p>
-      <h2 class="section-title reveal">Obszar naszego działania</h2>
-      <p class="section-subtitle reveal">
-        Działamy w promieniu 60 km od Katowic. Kliknij na mapie w przybliżonym miejscu
-        swojej nieruchomości (opcjonalnie) — to pomoże nam przy wycenie.
-      </p>
-
-      <div class="map-panel reveal">
-        <div id="service-area-map"></div>
-        <p class="map-note" id="map-click-note" hidden></p>
-        <p class="map-legend">
-          <span class="map-legend-dot"></span>
-          Standardowy obszar obsługi — 60 km od Katowic
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <!-- 8. FORMULARZ BEZPŁATNEJ WYCENY -->
+  <!-- 6. FORMULARZ BEZPŁATNEJ WYCENY -->
   <section id="kontakt" class="contact">
     <div class="container contact-inner">
       <div class="contact-info reveal">
@@ -590,11 +454,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <textarea id="other-text" name="message" rows="4" placeholder="Opisz dodatkowe usługi lub swoje oczekiwania..."></textarea>
         </div>
 
-        <!-- Lokalizacja wybrana na mapie (opcjonalnie, nie blokuje wysyłki) -->
-        <input type="hidden" id="location-lat-input" name="lokalizacja_szerokosc" value="">
-        <input type="hidden" id="location-lng-input" name="lokalizacja_dlugosc" value="">
-        <input type="hidden" id="location-status-input" name="lokalizacja_status" value="">
-
         <div class="form-row form-row-full">
           <button type="submit" class="btn btn-gold btn-full">Wyślij zapytanie</button>
         </div>
@@ -616,7 +475,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
       <nav class="footer-nav">
         <a href="#rodzaje">Rodzaje sprzątania</a>
-        <a href="#usugi">Usługi</a>
         <a href="#opinie">Opinie</a>
         <a href="#jak-dzialamy">Jak działamy</a>
         <a href="#kontakt">Kontakt</a>
@@ -631,8 +489,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
   </footer>
 
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
   <script src="script.js"></script>
-  <script src="map.js"></script>
 </body>
 </html>
