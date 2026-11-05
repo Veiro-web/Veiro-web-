@@ -1,22 +1,52 @@
 // Ustaw aktualny rok w stopce
 document.getElementById('year').textContent = new Date().getFullYear();
 
-// Obsługa formularza kontaktowego (wyceny) — wysyłka przez Formspree
+// ===== Elementy formularza =====
 const form = document.getElementById('quote-form');
 const status = document.getElementById('form-status');
 const phoneInput = document.getElementById('phone');
-const emailInput = document.getElementById('email');
 const phoneWarning = document.getElementById('phone-warning');
-const emailWarning = document.getElementById('email-warning');
-const serviceWarning = document.getElementById('service-warning');
-const serviceCheckboxes = form.querySelectorAll('input[name="uslugi[]"]');
+
+// Rodzaj sprzątania (akordeon, wybór jednej opcji)
+const cleaningAccordion = document.getElementById('cleaning-accordion');
+const cleaningItems = Array.from(cleaningAccordion.querySelectorAll('.accordion-item'));
+const cleaningTypeInput = document.getElementById('cleaning-type-input');
+const cleaningTypeWarning = document.getElementById('cleaning-type-warning');
+
+// Pola odkrywane po wyborze rodzaju sprzątania
+const progressiveFields = document.getElementById('progressive-fields');
+
+// Rodzaj obiektu (kafelki, wybór jednej opcji)
+const objectTypeTiles = document.getElementById('object-type-tiles');
+const objectTypeButtons = Array.from(objectTypeTiles.querySelectorAll('.tile-option'));
+const objectTypeInput = document.getElementById('object-type-input');
+const objectTypeWarning = document.getElementById('object-type-warning');
+
+// Metraż — tylko dodatnie liczby całkowite
+const areaInput = document.getElementById('area');
+
+// "Inne" — checkbox odkrywający pole tekstowe
+const otherCheckbox = document.getElementById('other-checkbox');
+const otherTextSection = document.getElementById('other-text-section');
 
 // Polski numer telefonu: dokładnie 9 cyfr (bez +48)
 const PHONE_PATTERN = /^[0-9]{9}$/;
-// Prosty, ale skuteczny wzorzec walidacji adresu e-mail
-const EMAIL_PATTERN = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
-// Blokada wpisywania czegokolwiek innego niż cyfry w polu telefonu (na bieżąco)
+// ===== Pomocnicza animacja: płynne rozwijanie/zwijanie kontenera =====
+function expandSection(el) {
+  el.classList.add('open');
+  const inner = el.querySelector(':scope > .conditional-section-inner') || el.querySelector('.conditional-section-inner');
+  if (inner) {
+    el.style.maxHeight = inner.scrollHeight + 'px';
+  }
+}
+
+function collapseSection(el) {
+  el.classList.remove('open');
+  el.style.maxHeight = '0px';
+}
+
+// ===== Telefon: tylko cyfry, dynamiczny komunikat ostrzegawczy =====
 phoneInput.addEventListener('input', function () {
   phoneInput.value = phoneInput.value.replace(/[^0-9]/g, '').slice(0, 9);
   updatePhoneWarning();
@@ -31,47 +61,131 @@ function updatePhoneWarning() {
   phoneInput.classList.toggle('invalid', showWarning);
 }
 
-// Dynamiczny komunikat ostrzegawczy dla e-maila — tylko gdy format jest błędny
-emailInput.addEventListener('input', updateEmailWarning);
-emailInput.addEventListener('blur', updateEmailWarning);
+// ===== Metraż: tylko dodatnie liczby całkowite =====
+areaInput.addEventListener('input', function () {
+  areaInput.value = areaInput.value.replace(/[^0-9]/g, '');
+});
 
-function updateEmailWarning() {
-  const value = emailInput.value.trim();
-  const showWarning = value.length > 0 && !EMAIL_PATTERN.test(value);
-  emailWarning.hidden = !showWarning;
-  emailInput.classList.toggle('invalid', showWarning);
+// ===== Akordeon: Rodzaj sprzątania (jedna opcja, wyraźnie oznaczona) =====
+cleaningItems.forEach((item) => {
+  const header = item.querySelector('.accordion-header');
+  const panel = item.querySelector('.accordion-panel');
+
+  header.addEventListener('click', function () {
+    const isActive = item.classList.contains('active');
+
+    // Zwiń wszystkie karty i wyczyść zaznaczenie
+    cleaningItems.forEach((other) => {
+      other.classList.remove('active');
+      const otherPanel = other.querySelector('.accordion-panel');
+      otherPanel.style.maxHeight = '0px';
+    });
+
+    if (isActive) {
+      // Kliknięcie ponownie zwija kartę i usuwa wybór
+      cleaningTypeInput.value = '';
+      revealProgressiveFields(false);
+      return;
+    }
+
+    // Rozwiń wybraną kartę i zaznacz ją jako wybrany wariant
+    item.classList.add('active');
+    panel.style.maxHeight = panel.querySelector('.accordion-panel-inner').scrollHeight + 'px';
+    cleaningTypeInput.value = item.dataset.value;
+    cleaningTypeWarning.hidden = true;
+    revealProgressiveFields(true);
+  });
+});
+
+function revealProgressiveFields(show) {
+  if (show) {
+    expandSection(progressiveFields);
+  } else {
+    collapseSection(progressiveFields);
+  }
 }
 
+// ===== Kafelki: Rodzaj obiektu (jedna opcja) =====
+objectTypeButtons.forEach((btn) => {
+  btn.addEventListener('click', function () {
+    const isActive = btn.classList.contains('active');
+    objectTypeButtons.forEach((b) => b.classList.remove('active'));
+
+    if (isActive) {
+      objectTypeInput.value = '';
+      return;
+    }
+
+    btn.classList.add('active');
+    objectTypeInput.value = btn.dataset.value;
+    objectTypeWarning.hidden = true;
+  });
+});
+
+// ===== Checkbox "Inne" — odkrywa pole tekstowe =====
+otherCheckbox.addEventListener('change', function () {
+  if (otherCheckbox.checked) {
+    expandSection(otherTextSection);
+  } else {
+    collapseSection(otherTextSection);
+    document.getElementById('other-text').value = '';
+  }
+});
+
+// Po zmianie rozmiaru okna — przelicz wysokości rozwiniętych sekcji (żeby nie "obcinało" treści)
+window.addEventListener('resize', function () {
+  if (progressiveFields.classList.contains('open')) {
+    expandSection(progressiveFields);
+  }
+  if (otherTextSection.classList.contains('open')) {
+    expandSection(otherTextSection);
+  }
+  cleaningItems.forEach((item) => {
+    if (item.classList.contains('active')) {
+      const panel = item.querySelector('.accordion-panel');
+      panel.style.maxHeight = panel.querySelector('.accordion-panel-inner').scrollHeight + 'px';
+    }
+  });
+});
+
+// ===== Wysyłka formularza (Formspree) =====
 form.addEventListener('submit', function (e) {
   e.preventDefault();
 
   const name = form.name.value.trim();
   const phone = phoneInput.value.trim();
-  const email = emailInput.value.trim();
-  const anyServiceChecked = Array.from(serviceCheckboxes).some((cb) => cb.checked);
+  const cleaningType = cleaningTypeInput.value;
+  const objectType = objectTypeInput.value;
 
-  if (!name || !phone || !anyServiceChecked) {
-    serviceWarning.hidden = anyServiceChecked;
-    status.textContent = 'Proszę wypełnić wszystkie wymagane pola (*) i zaznaczyć przynajmniej jedną usługę.';
+  if (!name || !phone) {
+    status.textContent = 'Proszę wypełnić wszystkie wymagane pola (*).';
     status.className = 'form-status error';
     return;
   }
-  serviceWarning.hidden = true;
+
+  if (!cleaningType) {
+    cleaningTypeWarning.hidden = false;
+    status.textContent = 'Wybierz rodzaj sprzątania.';
+    status.className = 'form-status error';
+    cleaningAccordion.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    return;
+  }
+  cleaningTypeWarning.hidden = true;
+
+  if (!objectType) {
+    objectTypeWarning.hidden = false;
+    status.textContent = 'Wybierz rodzaj obiektu.';
+    status.className = 'form-status error';
+    objectTypeTiles.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    return;
+  }
+  objectTypeWarning.hidden = true;
 
   updatePhoneWarning();
   if (!PHONE_PATTERN.test(phone)) {
     status.textContent = 'Podaj poprawny numer telefonu (9 cyfr, bez +48).';
     status.className = 'form-status error';
     phoneInput.focus();
-    return;
-  }
-
-  // E-mail jest opcjonalny — walidujemy format tylko, jeśli coś wpisano
-  updateEmailWarning();
-  if (email && !EMAIL_PATTERN.test(email)) {
-    status.textContent = 'Podaj poprawny adres e-mail, np. jan.kowalski@example.com.';
-    status.className = 'form-status error';
-    emailInput.focus();
     return;
   }
 
@@ -94,8 +208,15 @@ form.addEventListener('submit', function (e) {
         status.className = 'form-status success';
         form.reset();
         phoneWarning.hidden = true;
-        emailWarning.hidden = true;
-        serviceWarning.hidden = true;
+        cleaningTypeWarning.hidden = true;
+        objectTypeWarning.hidden = true;
+        cleaningItems.forEach((item) => {
+          item.classList.remove('active');
+          item.querySelector('.accordion-panel').style.maxHeight = '0px';
+        });
+        objectTypeButtons.forEach((b) => b.classList.remove('active'));
+        collapseSection(progressiveFields);
+        collapseSection(otherTextSection);
       } else {
         return response.json().then((data) => {
           throw new Error(

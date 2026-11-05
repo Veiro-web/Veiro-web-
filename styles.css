@@ -632,6 +632,314 @@ a.contact-detail:hover {
   grid-template-columns: 1fr 1fr;
   gap: 18px;
   border: 1px solid var(--border);
+  align-content: start;
+}
+
+/* ===== Para pól w jednym rzędzie (Metraż + zwierzęta) ===== */
+.form-row-pair {
+  grid-column: 1 / -1;
+  display: flex;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+
+.form-row-pair .form-row {
+  flex: 1 1 180px;
+}
+
+.form-row-checkbox {
+  justify-content: center;
+}
+
+/* ===== Sekcje odkrywane warunkowo (płynna animacja) ===== */
+.conditional-section {
+  grid-column: 1 / -1;
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease, opacity 0.3s ease;
+}
+
+.conditional-section.open {
+  opacity: 1;
+}
+
+.conditional-section-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding-top: 4px;
+}
+
+#other-text-section .conditional-section-inner {
+  padding-top: 12px;
+}
+
+/* ===== Checkbox samodzielny (zwierzęta / inne) ===== */
+.checkbox-item-standalone {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 0;
+  font-weight: 500;
+  font-size: 0.95rem;
+  color: var(--navy);
+  padding: 12px 14px;
+  background: var(--bg);
+  border: 1.5px solid var(--border);
+  border-radius: 8px;
+}
+
+.checkbox-item-standalone input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  margin: 0;
+}
+
+/* ===== Akordeon: Rodzaj sprzątania ===== */
+.accordion {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 4px;
+}
+
+.accordion-item {
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+  background: var(--bg);
+}
+
+.accordion-item.active {
+  border-color: var(--gold);
+  box-shadow: 0 6px 18px rgba(201, 162, 75, 0.18);
+  background: var(--white);
+}
+
+.accordion-header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 14px 16px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  font-family: inherit;
+}
+
+.accordion-header-text {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.accordion-title {
+  font-weight: 700;
+  font-size: 0.98rem;
+  color: var(--navy);
+}
+
+.accordion-item.active .accordion-title {
+  color: var(--gold);
+}
+
+.accordion-short {
+  font-size: 0.84rem;
+  color: var(--text-muted);
+}
+
+.accordion-chevron {
+  width: 18px;
+  height: 18px;
+  color: var(--text-muted);
+  flex-shrink: 0;
+  transition: transform 0.3s ease;
+}
+
+.accordion-item.active .accordion-chevron {
+  transform: rotate(180deg);
+  color: var(--gold);
+}
+
+.accordion-panel {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.35s ease;
+}
+
+.accordion-panel-inner {
+  padding: 0 16px 16px;
+}
+
+.accordion-list {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  padding-left: 18px;
+}
+
+.accordion-list li {
+  font-size: 0.9rem;
+  color: var(--text-dark);
+  list-style: disc;
+}
+
+/* ===== Kafelki: Rodzaj obiektu ===== */
+.tile-group {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  margin-top: 4px;
+}
+
+.tile-option {
+  padding: 13px 10px;
+  border: 1.5px solid var(--border);
+  border-radius: 8px;
+  background: var(--bg);
+  color: var(--text-dark);
+  font-family: inherit;
+  font-weight: 600;
+  font-size: 0.92rem;
+  cursor: pointer;
+  transition: border-color 0.2s ease, background 0.2s ease, color 0.2s ease;
+}
+
+.tile-option:hover {
+  border-color: var(--gold-light);
+}
+
+.tile-option.active {
+  background: var(--navy);
+  border-color: var(--navy);
+  color: var(--white);
+}
+
+/* ===== Panel mapy obszaru obsługi ===== */
+.map-panel {
+  flex: 1 1 380px;
+  background: var(--white);
+  padding: 32px;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.map-panel-title {
+  font-size: 1.25rem;
+  margin: 0;
+}
+
+.map-panel-subtitle {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+#service-area-map {
+  width: 100%;
+  height: 360px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  z-index: 0;
+}
+
+.map-note {
+  font-size: 0.86rem;
+  padding: 10px 12px;
+  border-radius: 8px;
+  margin: 0;
+}
+
+.map-note-ok {
+  background: rgba(47, 184, 106, 0.12);
+  color: #1f8a4c;
+}
+
+.map-note-warning {
+  background: rgba(192, 57, 43, 0.1);
+  color: #c0392b;
+}
+
+.map-legend {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.84rem;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+.map-legend-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #2fb86a;
+  border: 2px solid #1f8a4c;
+  flex-shrink: 0;
+}
+
+/* Etykiety miast na mapie (renderowane przez Leaflet divIcon) */
+.city-label-icon {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  pointer-events: none;
+  white-space: nowrap;
+  transform: translate(-50%, -50%);
+}
+
+.city-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--navy);
+  display: inline-block;
+}
+
+.city-name {
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--navy);
+  background: rgba(255, 255, 255, 0.82);
+  padding: 1px 5px;
+  border-radius: 4px;
+}
+
+.city-dot-main {
+  width: 9px;
+  height: 9px;
+  background: var(--gold);
+  border: 2px solid var(--navy);
+}
+
+.city-name-main {
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--navy);
+  background: var(--gold-light);
+}
+
+.selected-location-pin {
+  display: block;
+  width: 16px;
+  height: 16px;
+  border-radius: 50% 50% 50% 0;
+  background: var(--navy);
+  border: 2px solid var(--white);
+  transform: rotate(-45deg);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
 }
 
 .form-row {
@@ -887,5 +1195,25 @@ a.contact-detail:hover {
 
   .contact-inner {
     flex-direction: column;
+  }
+
+  .tile-group {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .form-row-pair {
+    flex-direction: column;
+  }
+
+  .map-panel {
+    padding: 22px;
+  }
+
+  #service-area-map {
+    height: 280px;
+  }
+
+  .accordion-short {
+    display: none;
   }
 }

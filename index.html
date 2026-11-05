@@ -16,6 +16,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
 <!-- Cloudflare Web Analytics -->
 <script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "cde91d074a4e402f97309ad45cde456e"}'></script>
 <!-- End Cloudflare Web Analytics -->
@@ -339,60 +340,139 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
       <form id="quote-form" class="quote-form" action="https://formspree.io/f/moevdkwk" method="POST" novalidate>
         <input type="hidden" name="_subject" value="Nowe zapytanie o wycenę – Sprzątanie Śląsk">
-        <div class="form-row">
+
+        <div class="form-row form-row-full">
           <label for="name">Imię i nazwisko *</label>
           <input type="text" id="name" name="name" required placeholder="Jan Kowalski">
         </div>
 
-        <div class="form-row">
+        <div class="form-row form-row-full">
           <label for="phone">Telefon *</label>
           <input type="tel" id="phone" name="phone" required inputmode="numeric" pattern="[0-9]{9}" minlength="9" maxlength="9" placeholder="600000000" title="Polski numer telefonu: 9 cyfr, np. 600000000">
           <span class="field-warning" id="phone-warning" hidden>Numer telefonu powinien mieć 9 cyfr.</span>
         </div>
 
-        <div class="form-row">
-          <label for="email">E-mail (opcjonalnie)</label>
-          <input type="email" id="email" name="email" pattern="[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}" placeholder="jan.kowalski@example.com" title="Wpisz poprawny adres e-mail, np. jan.kowalski@example.com">
-          <span class="field-warning" id="email-warning" hidden>To nie wygląda na poprawny adres e-mail.</span>
-        </div>
-
+        <!-- RODZAJ SPRZĄTANIA — akordeon, wybór jednej opcji -->
         <div class="form-row form-row-full">
-          <label>Rodzaj usługi — zaznacz jedną lub więcej *</label>
-          <div class="checkbox-groups">
-            <div class="checkbox-group">
-              <p class="checkbox-group-title">Sprzątanie standardowe</p>
-              <label class="checkbox-item"><input type="checkbox" name="uslugi[]" value="Sprzątanie mieszkania / domu"> Sprzątanie mieszkania / domu</label>
-              <label class="checkbox-item"><input type="checkbox" name="uslugi[]" value="Sprzątanie biura"> Sprzątanie biura</label>
-              <label class="checkbox-item"><input type="checkbox" name="uslugi[]" value="Mycie podłóg"> Mycie podłóg</label>
-              <label class="checkbox-item"><input type="checkbox" name="uslugi[]" value="Czyszczenie łazienki"> Czyszczenie łazienki</label>
-              <label class="checkbox-item"><input type="checkbox" name="uslugi[]" value="Czyszczenie kuchni i AGD"> Czyszczenie kuchni i AGD</label>
-              <label class="checkbox-item"><input type="checkbox" name="uslugi[]" value="Mycie okien"> Mycie okien</label>
-              <label class="checkbox-item"><input type="checkbox" name="uslugi[]" value="Dezynfekcja powierzchni"> Dezynfekcja powierzchni</label>
-              <label class="checkbox-item"><input type="checkbox" name="uslugi[]" value="Wynoszenie śmieci"> Wynoszenie śmieci</label>
+          <label>Rodzaj sprzątania *</label>
+          <div class="accordion" id="cleaning-accordion">
+
+            <div class="accordion-item" data-value="Sprzątanie standardowe">
+              <button type="button" class="accordion-header">
+                <span class="accordion-header-text">
+                  <span class="accordion-title">Sprzątanie standardowe</span>
+                  <span class="accordion-short">Szybkie, regularne odświeżenie mieszkania lub domu.</span>
+                </span>
+                <svg class="accordion-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+              </button>
+              <div class="accordion-panel">
+                <div class="accordion-panel-inner">
+                  <ul class="accordion-list">
+                    <li>Odkurzanie i mycie podłóg</li>
+                    <li>Ścieranie kurzu i czyszczenie dostępnych powierzchni</li>
+                    <li>Czyszczenie kuchni i łazienki</li>
+                    <li>Usuwanie pajęczyn</li>
+                  </ul>
+                </div>
+              </div>
             </div>
-            <div class="checkbox-group">
-              <p class="checkbox-group-title">Po remoncie / najmie</p>
-              <label class="checkbox-item"><input type="checkbox" name="uslugi[]" value="Sprzątanie po remoncie"> Sprzątanie po remoncie</label>
-              <label class="checkbox-item"><input type="checkbox" name="uslugi[]" value="Sprzątanie po najmie"> Sprzątanie po najmie</label>
+
+            <div class="accordion-item" data-value="Sprzątanie pełne">
+              <button type="button" class="accordion-header">
+                <span class="accordion-header-text">
+                  <span class="accordion-title">Sprzątanie pełne</span>
+                  <span class="accordion-short">Dokładne porządki — także w trudno dostępnych miejscach.</span>
+                </span>
+                <svg class="accordion-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+              </button>
+              <div class="accordion-panel">
+                <div class="accordion-panel-inner">
+                  <ul class="accordion-list">
+                    <li>Dokładne sprzątanie wszystkich pomieszczeń</li>
+                    <li>Czyszczenie trudno dostępnych miejsc: kaloryfery, listwy przypodłogowe, rurki itd.</li>
+                    <li>Mycie okien i balkonów</li>
+                    <li>Czyszczenie wnętrz szafek i sprzętów AGD</li>
+                    <li>Usuwanie trudniejszych zabrudzeń</li>
+                  </ul>
+                </div>
+              </div>
             </div>
-            <div class="checkbox-group">
-              <p class="checkbox-group-title">Usługi dodatkowe</p>
-              <label class="checkbox-item"><input type="checkbox" name="uslugi[]" value="Zakupy / drobne czynności"> Zakupy / drobne czynności</label>
-              <label class="checkbox-item"><input type="checkbox" name="uslugi[]" value="Inne"> Inne (opisz w wiadomości)</label>
+
+            <div class="accordion-item" data-value="Sprzątanie po remoncie">
+              <button type="button" class="accordion-header">
+                <span class="accordion-header-text">
+                  <span class="accordion-title">Sprzątanie po remoncie</span>
+                  <span class="accordion-short">Kompleksowe czyszczenie po zakończonych pracach lub zmianie najemcy.</span>
+                </span>
+                <svg class="accordion-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+              </button>
+              <div class="accordion-panel">
+                <div class="accordion-panel-inner">
+                  <ul class="accordion-list">
+                    <li>Dokładne czyszczenie wszystkich pomieszczeń</li>
+                    <li>Czyszczenie kuchni, łazienki i sprzętów AGD</li>
+                    <li>Czyszczenie wnętrz szafek</li>
+                    <li>Mycie podłóg, drzwi i dostępnych powierzchni</li>
+                    <li>Usuwanie śladów użytkowania i trudniejszych zabrudzeń</li>
+                    <li>Zakres prac ustalany na podstawie stanu mieszkania</li>
+                  </ul>
+                </div>
+              </div>
             </div>
+
           </div>
-          <span class="field-warning" id="service-warning" hidden>Zaznacz przynajmniej jedną usługę.</span>
+          <input type="hidden" id="cleaning-type-input" name="rodzaj_sprzatania" value="">
+          <span class="field-warning" id="cleaning-type-warning" hidden>Wybierz rodzaj sprzątania.</span>
         </div>
 
-        <div class="form-row">
-          <label for="area">Metraż (m²)</label>
-          <input type="number" id="area" name="area" min="1" placeholder="np. 60">
+        <!-- Pola odkrywane dopiero po wyborze rodzaju sprzątania -->
+        <div class="conditional-section" id="progressive-fields">
+          <div class="conditional-section-inner">
+
+            <div class="form-row form-row-full">
+              <label>Rodzaj obiektu *</label>
+              <div class="tile-group" id="object-type-tiles">
+                <button type="button" class="tile-option" data-value="Mieszkanie">Mieszkanie</button>
+                <button type="button" class="tile-option" data-value="Dom">Dom</button>
+                <button type="button" class="tile-option" data-value="Biuro">Biuro</button>
+                <button type="button" class="tile-option" data-value="Inny">Inny</button>
+              </div>
+              <input type="hidden" id="object-type-input" name="rodzaj_obiektu" value="">
+              <span class="field-warning" id="object-type-warning" hidden>Wybierz rodzaj obiektu.</span>
+            </div>
+
+            <div class="form-row-pair">
+              <div class="form-row">
+                <label for="area">Metraż (m²)</label>
+                <input type="number" id="area" name="area" min="1" step="1" inputmode="numeric" placeholder="Np. 60">
+              </div>
+              <div class="form-row form-row-checkbox">
+                <label class="checkbox-item checkbox-item-standalone" for="pets-checkbox">
+                  <input type="checkbox" id="pets-checkbox" name="zwierzeta" value="Tak">
+                  <span>Obecność zwierząt domowych</span>
+                </label>
+              </div>
+            </div>
+
+            <div class="form-row form-row-full">
+              <label class="checkbox-item checkbox-item-standalone" for="other-checkbox">
+                <input type="checkbox" id="other-checkbox" name="inne_checkbox" value="Tak">
+                <span>Inne (opcjonalnie)</span>
+              </label>
+              <div class="conditional-section" id="other-text-section">
+                <div class="conditional-section-inner">
+                  <textarea id="other-text" name="message" rows="4" placeholder="Opisz dodatkowe usługi lub swoje oczekiwania..."></textarea>
+                </div>
+              </div>
+            </div>
+
+          </div>
         </div>
 
-        <div class="form-row form-row-full">
-          <label for="message">Dodatkowe informacje</label>
-          <textarea id="message" name="message" rows="4" placeholder="Opisz zakres prac, preferowany termin itp."></textarea>
-        </div>
+        <!-- Lokalizacja wybrana na mapie (opcjonalnie, nie blokuje wysyłki) -->
+        <input type="hidden" id="location-lat-input" name="lokalizacja_szerokosc" value="">
+        <input type="hidden" id="location-lng-input" name="lokalizacja_dlugosc" value="">
+        <input type="hidden" id="location-status-input" name="lokalizacja_status" value="">
 
         <div class="form-row form-row-full">
           <button type="submit" class="btn btn-gold btn-full">Wyślij zapytanie</button>
@@ -400,6 +480,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
         <p id="form-status" class="form-status" role="status"></p>
       </form>
+
+      <div class="map-panel">
+        <h3 class="map-panel-title">Obszar naszego działania</h3>
+        <p class="map-panel-subtitle">Kliknij na mapie w przybliżonym miejscu Twojej nieruchomości (opcjonalnie).</p>
+        <div id="service-area-map"></div>
+        <p class="map-note" id="map-click-note" hidden></p>
+        <p class="map-legend">
+          <span class="map-legend-dot"></span>
+          Standardowy obszar obsługi — 75 km od Katowic
+        </p>
+      </div>
     </div>
   </section>
 
@@ -423,6 +514,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
   </footer>
 
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
   <script src="script.js"></script>
+  <script src="map.js"></script>
 </body>
 </html>
