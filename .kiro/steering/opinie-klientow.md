@@ -29,5 +29,11 @@ Używane w sekcji "Opinie i realizacje" na stronie głównej.
 - Treść: "Thorough and professional. Did a great job of cleaning. I recommend."
 
 ## Realizacje (zdjęcia)
-- Właściciel przesłał zdjęcie wysprzątanej łazienki (biała, kabina prysznicowa, pralka) —
-  do dodania jako assets/photos/realizacja-lazienka.jpg, gdy plik trafi do repo.
+- Zdjęcie wysprzątanej łazienki dodane jako assets/photos/realizacja-lazienka.jpg
+  (zoptymalizowane z oryginału 3072x4080 / 2.6 MB do 1400px / ~288 KB). Widoczne w galerii
+  realizacji w sekcji "Opinie i realizacje".
+
+## Uwaga nt. zrzutów opinii
+- Właściciel wgrał też 3 zrzuty ekranu opinii (pliki orca-image-*.jpeg) — NIE są używane na
+  stronie, bo opinie są odwzorowane jako natywne karty HTML (ładniejsze, responsywne).
+  Zostały usunięte z repo.
