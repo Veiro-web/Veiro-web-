@@ -2298,6 +2298,25 @@ a.contact-detail:hover {
   text-align: left;
   font-weight: 500;
   color: var(--text-dark);
+  position: sticky;
+  left: 0;
+  z-index: 1;
+}
+
+.compare-table tbody td:first-child {
+  background: var(--white);
+}
+
+.compare-table tbody tr:nth-child(even) td:first-child {
+  background: var(--bg-alt);
+}
+
+.table-scroll-hint {
+  display: none;
+  text-align: center;
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  margin-bottom: 10px;
 }
 
 .compare-table thead th {
@@ -2353,5 +2372,9 @@ a.contact-detail:hover {
   .compare-table td {
     padding: 12px 14px;
     font-size: 0.85rem;
+  }
+
+  .table-scroll-hint {
+    display: block;
   }
 }
