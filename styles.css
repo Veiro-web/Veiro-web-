@@ -624,14 +624,14 @@ a.contact-detail:hover {
 
 .quote-form {
   flex: 1 1 440px;
-  background: var(--white);
+  background: linear-gradient(150deg, var(--navy) 0%, var(--navy-2) 100%);
   padding: 40px;
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-lg);
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 18px;
-  border: 1px solid var(--border);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   align-content: start;
 }
 
@@ -675,7 +675,7 @@ a.contact-detail:hover {
   padding-top: 12px;
 }
 
-/* ===== Checkbox samodzielny (zwierzęta / inne) ===== */
+/* ===== Checkbox samodzielny (zwierzęta) ===== */
 .checkbox-item-standalone {
   display: flex;
   align-items: center;
@@ -683,10 +683,10 @@ a.contact-detail:hover {
   margin-bottom: 0;
   font-weight: 500;
   font-size: 0.95rem;
-  color: var(--navy);
+  color: rgba(255, 255, 255, 0.9);
   padding: 12px 14px;
-  background: var(--bg);
-  border: 1.5px solid var(--border);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1.5px solid rgba(255, 255, 255, 0.16);
   border-radius: 8px;
 }
 
@@ -694,6 +694,7 @@ a.contact-detail:hover {
   width: 18px;
   height: 18px;
   margin: 0;
+  accent-color: var(--gold);
 }
 
 /* ===== Akordeon: Rodzaj sprzątania ===== */
@@ -706,17 +707,17 @@ a.contact-detail:hover {
 }
 
 .accordion-item {
-  border: 1.5px solid var(--border);
+  border: 1.5px solid rgba(255, 255, 255, 0.14);
   border-radius: 10px;
   overflow: hidden;
-  transition: border-color 0.25s ease, box-shadow 0.25s ease;
-  background: var(--bg);
+  transition: border-color 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+  background: rgba(255, 255, 255, 0.04);
 }
 
 .accordion-item.active {
   border-color: var(--gold);
-  box-shadow: 0 6px 18px rgba(201, 162, 75, 0.18);
-  background: var(--white);
+  box-shadow: 0 6px 18px rgba(201, 162, 75, 0.22);
+  background: rgba(201, 162, 75, 0.1);
 }
 
 .accordion-header {
@@ -742,22 +743,22 @@ a.contact-detail:hover {
 .accordion-title {
   font-weight: 700;
   font-size: 0.98rem;
-  color: var(--navy);
+  color: var(--white);
 }
 
 .accordion-item.active .accordion-title {
-  color: var(--gold);
+  color: var(--gold-light);
 }
 
 .accordion-short {
   font-size: 0.84rem;
-  color: var(--text-muted);
+  color: rgba(255, 255, 255, 0.6);
 }
 
 .accordion-chevron {
   width: 18px;
   height: 18px;
-  color: var(--text-muted);
+  color: rgba(255, 255, 255, 0.55);
   flex-shrink: 0;
   transition: transform 0.3s ease;
 }
@@ -786,7 +787,7 @@ a.contact-detail:hover {
 
 .accordion-list li {
   font-size: 0.9rem;
-  color: var(--text-dark);
+  color: rgba(255, 255, 255, 0.85);
   list-style: disc;
 }
 
@@ -801,10 +802,10 @@ a.contact-detail:hover {
 
 .tile-option {
   padding: 13px 10px;
-  border: 1.5px solid var(--border);
+  border: 1.5px solid rgba(255, 255, 255, 0.16);
   border-radius: 8px;
-  background: var(--bg);
-  color: var(--text-dark);
+  background: rgba(255, 255, 255, 0.05);
+  color: rgba(255, 255, 255, 0.85);
   font-family: inherit;
   font-weight: 600;
   font-size: 0.92rem;
@@ -817,19 +818,19 @@ a.contact-detail:hover {
 }
 
 .tile-option.active {
-  background: var(--navy);
-  border-color: var(--navy);
-  color: var(--white);
+  background: linear-gradient(135deg, var(--gold-light), var(--gold));
+  border-color: var(--gold);
+  color: var(--navy);
 }
 
 /* ===== Panel mapy obszaru obsługi ===== */
 .map-panel {
   flex: 1 1 380px;
-  background: var(--white);
+  background: linear-gradient(150deg, var(--navy) 0%, var(--navy-2) 100%);
   padding: 32px;
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-lg);
-  border: 1px solid var(--border);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   display: flex;
   flex-direction: column;
   gap: 14px;
@@ -838,10 +839,11 @@ a.contact-detail:hover {
 .map-panel-title {
   font-size: 1.25rem;
   margin: 0;
+  color: var(--white);
 }
 
 .map-panel-subtitle {
-  color: var(--text-muted);
+  color: rgba(255, 255, 255, 0.65);
   font-size: 0.9rem;
   margin: 0;
 }
@@ -850,7 +852,7 @@ a.contact-detail:hover {
   width: 100%;
   height: 360px;
   border-radius: 10px;
-  border: 1px solid var(--border);
+  border: 1px solid rgba(255, 255, 255, 0.14);
   z-index: 0;
 }
 
@@ -862,13 +864,13 @@ a.contact-detail:hover {
 }
 
 .map-note-ok {
-  background: rgba(47, 184, 106, 0.12);
-  color: #1f8a4c;
+  background: rgba(47, 184, 106, 0.16);
+  color: #8de8ac;
 }
 
 .map-note-warning {
-  background: rgba(192, 57, 43, 0.1);
-  color: #c0392b;
+  background: rgba(255, 154, 141, 0.14);
+  color: #ff9a8d;
 }
 
 .map-legend {
@@ -876,7 +878,7 @@ a.contact-detail:hover {
   align-items: center;
   gap: 8px;
   font-size: 0.84rem;
-  color: var(--text-muted);
+  color: rgba(255, 255, 255, 0.65);
   margin: 0;
 }
 
@@ -936,8 +938,8 @@ a.contact-detail:hover {
   width: 16px;
   height: 16px;
   border-radius: 50% 50% 50% 0;
-  background: var(--navy);
-  border: 2px solid var(--white);
+  background: var(--gold);
+  border: 2px solid var(--navy);
   transform: rotate(-45deg);
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
 }
@@ -955,12 +957,12 @@ a.contact-detail:hover {
 .form-row label {
   font-weight: 600;
   font-size: 0.88rem;
-  color: var(--navy);
+  color: rgba(255, 255, 255, 0.88);
 }
 
 .field-warning {
   font-size: 0.8rem;
-  color: #c0392b;
+  color: #ff9a8d;
   line-height: 1.4;
   font-weight: 500;
 }
@@ -1002,20 +1004,25 @@ a.contact-detail:hover {
 }
 
 .form-row input.invalid {
-  border-color: #c0392b;
+  border-color: #ff9a8d;
 }
 
 .form-row input,
 .form-row select,
 .form-row textarea {
   padding: 12px 14px;
-  border: 1.5px solid var(--border);
+  border: 1.5px solid rgba(255, 255, 255, 0.18);
   border-radius: 8px;
   font-size: 0.96rem;
   font-family: inherit;
-  color: var(--text-dark);
-  background: var(--bg);
-  transition: border-color 0.2s ease;
+  color: var(--white);
+  background: rgba(255, 255, 255, 0.06);
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+.form-row input::placeholder,
+.form-row textarea::placeholder {
+  color: rgba(255, 255, 255, 0.4);
 }
 
 .form-row input:focus,
@@ -1023,6 +1030,7 @@ a.contact-detail:hover {
 .form-row textarea:focus {
   outline: none;
   border-color: var(--gold);
+  background: rgba(255, 255, 255, 0.1);
 }
 
 .form-status {
@@ -1034,11 +1042,11 @@ a.contact-detail:hover {
 }
 
 .form-status.success {
-  color: #2e8b57;
+  color: #7be0a8;
 }
 
 .form-status.error {
-  color: #c0392b;
+  color: #ff9a8d;
 }
 
 /* ===== Footer ===== */

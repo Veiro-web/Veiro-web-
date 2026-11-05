@@ -7,16 +7,13 @@ const status = document.getElementById('form-status');
 const phoneInput = document.getElementById('phone');
 const phoneWarning = document.getElementById('phone-warning');
 
-// Rodzaj sprzątania (akordeon, wybór jednej opcji)
+// Rodzaj sprzątania (akordeon — rozwija tylko opis, wybór jednej opcji)
 const cleaningAccordion = document.getElementById('cleaning-accordion');
 const cleaningItems = Array.from(cleaningAccordion.querySelectorAll('.accordion-item'));
 const cleaningTypeInput = document.getElementById('cleaning-type-input');
 const cleaningTypeWarning = document.getElementById('cleaning-type-warning');
 
-// Pola odkrywane po wyborze rodzaju sprzątania
-const progressiveFields = document.getElementById('progressive-fields');
-
-// Rodzaj obiektu (kafelki, wybór jednej opcji)
+// Rodzaj obiektu (kafelki, wybór jednej opcji) — widoczne od razu
 const objectTypeTiles = document.getElementById('object-type-tiles');
 const objectTypeButtons = Array.from(objectTypeTiles.querySelectorAll('.tile-option'));
 const objectTypeInput = document.getElementById('object-type-input');
@@ -25,26 +22,8 @@ const objectTypeWarning = document.getElementById('object-type-warning');
 // Metraż — tylko dodatnie liczby całkowite
 const areaInput = document.getElementById('area');
 
-// "Inne" — checkbox odkrywający pole tekstowe
-const otherCheckbox = document.getElementById('other-checkbox');
-const otherTextSection = document.getElementById('other-text-section');
-
 // Polski numer telefonu: dokładnie 9 cyfr (bez +48)
 const PHONE_PATTERN = /^[0-9]{9}$/;
-
-// ===== Pomocnicza animacja: płynne rozwijanie/zwijanie kontenera =====
-function expandSection(el) {
-  el.classList.add('open');
-  const inner = el.querySelector(':scope > .conditional-section-inner') || el.querySelector('.conditional-section-inner');
-  if (inner) {
-    el.style.maxHeight = inner.scrollHeight + 'px';
-  }
-}
-
-function collapseSection(el) {
-  el.classList.remove('open');
-  el.style.maxHeight = '0px';
-}
 
 // ===== Telefon: tylko cyfry, dynamiczny komunikat ostrzegawczy =====
 phoneInput.addEventListener('input', function () {
@@ -66,7 +45,7 @@ areaInput.addEventListener('input', function () {
   areaInput.value = areaInput.value.replace(/[^0-9]/g, '');
 });
 
-// ===== Akordeon: Rodzaj sprzątania (jedna opcja, wyraźnie oznaczona) =====
+// ===== Akordeon: Rodzaj sprzątania — klik rozwija/zwija TYLKO opis danej karty =====
 cleaningItems.forEach((item) => {
   const header = item.querySelector('.accordion-header');
   const panel = item.querySelector('.accordion-panel');
@@ -74,36 +53,25 @@ cleaningItems.forEach((item) => {
   header.addEventListener('click', function () {
     const isActive = item.classList.contains('active');
 
-    // Zwiń wszystkie karty i wyczyść zaznaczenie
+    // Zwiń wszystkie karty i wyczyść zaznaczenie — wybór jest jeden na raz
     cleaningItems.forEach((other) => {
       other.classList.remove('active');
-      const otherPanel = other.querySelector('.accordion-panel');
-      otherPanel.style.maxHeight = '0px';
+      other.querySelector('.accordion-panel').style.maxHeight = '0px';
     });
 
     if (isActive) {
       // Kliknięcie ponownie zwija kartę i usuwa wybór
       cleaningTypeInput.value = '';
-      revealProgressiveFields(false);
       return;
     }
 
-    // Rozwiń wybraną kartę i zaznacz ją jako wybrany wariant
+    // Rozwiń opis wybranej karty i zaznacz ją jako wybrany wariant
     item.classList.add('active');
     panel.style.maxHeight = panel.querySelector('.accordion-panel-inner').scrollHeight + 'px';
     cleaningTypeInput.value = item.dataset.value;
     cleaningTypeWarning.hidden = true;
-    revealProgressiveFields(true);
   });
 });
-
-function revealProgressiveFields(show) {
-  if (show) {
-    expandSection(progressiveFields);
-  } else {
-    collapseSection(progressiveFields);
-  }
-}
 
 // ===== Kafelki: Rodzaj obiektu (jedna opcja) =====
 objectTypeButtons.forEach((btn) => {
@@ -122,24 +90,8 @@ objectTypeButtons.forEach((btn) => {
   });
 });
 
-// ===== Checkbox "Inne" — odkrywa pole tekstowe =====
-otherCheckbox.addEventListener('change', function () {
-  if (otherCheckbox.checked) {
-    expandSection(otherTextSection);
-  } else {
-    collapseSection(otherTextSection);
-    document.getElementById('other-text').value = '';
-  }
-});
-
-// Po zmianie rozmiaru okna — przelicz wysokości rozwiniętych sekcji (żeby nie "obcinało" treści)
+// Po zmianie rozmiaru okna — przelicz wysokość rozwiniętej karty opisu (żeby nie "obcinało" treści)
 window.addEventListener('resize', function () {
-  if (progressiveFields.classList.contains('open')) {
-    expandSection(progressiveFields);
-  }
-  if (otherTextSection.classList.contains('open')) {
-    expandSection(otherTextSection);
-  }
   cleaningItems.forEach((item) => {
     if (item.classList.contains('active')) {
       const panel = item.querySelector('.accordion-panel');
@@ -215,8 +167,6 @@ form.addEventListener('submit', function (e) {
           item.querySelector('.accordion-panel').style.maxHeight = '0px';
         });
         objectTypeButtons.forEach((b) => b.classList.remove('active'));
-        collapseSection(progressiveFields);
-        collapseSection(otherTextSection);
       } else {
         return response.json().then((data) => {
           throw new Error(

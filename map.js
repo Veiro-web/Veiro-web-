@@ -7,7 +7,7 @@
   }
 
   const KATOWICE = [50.2584, 19.0239]; // Rynek w Katowicach
-  const RADIUS_KM = 75;
+  const RADIUS_KM = 60;
   const EARTH_RADIUS_KM = 6371;
 
   // --- Pomocnicze funkcje geograficzne ---
@@ -98,22 +98,36 @@
     interactive: false,
   }).addTo(map);
 
-  // Wnętrze okręgu — półprzezroczysta zieleń + wyraźny zielony obrys
+  // Wnętrze okręgu — półprzezroczysta zieleń + wyraźny, mocny zielony obrys (dwuwarstwowy — dla lepszej widoczności)
   L.polygon([circleRing], {
-    color: '#1f8a4c',
-    weight: 3,
+    color: '#ffffff',
+    weight: 7,
+    opacity: 0.9,
     fillColor: '#2fb86a',
-    fillOpacity: 0.16,
+    fillOpacity: 0.22,
     interactive: false,
   }).addTo(map);
 
-  // Dopasuj widok tak, by cały obszar 75 km był widoczny
+  L.polygon([circleRing], {
+    color: '#0f8a3f',
+    weight: 4,
+    opacity: 1,
+    fill: false,
+    interactive: false,
+  }).addTo(map);
+
+  // Dopasuj widok tak, by cały obszar był widoczny i dokładnie wycentrowany na Katowicach
   const north = destinationPoint(KATOWICE[0], KATOWICE[1], 0, RADIUS_KM);
   const east = destinationPoint(KATOWICE[0], KATOWICE[1], 90, RADIUS_KM);
   const south = destinationPoint(KATOWICE[0], KATOWICE[1], 180, RADIUS_KM);
   const west = destinationPoint(KATOWICE[0], KATOWICE[1], 270, RADIUS_KM);
   const bounds = L.latLngBounds([south[0], west[1]], [north[0], east[1]]);
-  map.fitBounds(bounds, { padding: [16, 16] });
+
+  // Zamiast fitBounds (które może zostawić nadmiarowy margines, gdy proporcje
+  // kontenera nie zgadzają się z proporcjami obszaru) — liczymy dopasowany
+  // zoom i jawnie centrujemy widok na Katowicach.
+  const fitZoom = map.getBoundsZoom(bounds, false);
+  map.setView(KATOWICE, fitZoom);
 
   // --- Znacznik Katowic (centrum) ---
   const katowiceIcon = L.divIcon({

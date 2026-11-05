@@ -425,48 +425,35 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <span class="field-warning" id="cleaning-type-warning" hidden>Wybierz rodzaj sprzątania.</span>
         </div>
 
-        <!-- Pola odkrywane dopiero po wyborze rodzaju sprzątania -->
-        <div class="conditional-section" id="progressive-fields">
-          <div class="conditional-section-inner">
-
-            <div class="form-row form-row-full">
-              <label>Rodzaj obiektu *</label>
-              <div class="tile-group" id="object-type-tiles">
-                <button type="button" class="tile-option" data-value="Mieszkanie">Mieszkanie</button>
-                <button type="button" class="tile-option" data-value="Dom">Dom</button>
-                <button type="button" class="tile-option" data-value="Biuro">Biuro</button>
-                <button type="button" class="tile-option" data-value="Inny">Inny</button>
-              </div>
-              <input type="hidden" id="object-type-input" name="rodzaj_obiektu" value="">
-              <span class="field-warning" id="object-type-warning" hidden>Wybierz rodzaj obiektu.</span>
-            </div>
-
-            <div class="form-row-pair">
-              <div class="form-row">
-                <label for="area">Metraż (m²)</label>
-                <input type="number" id="area" name="area" min="1" step="1" inputmode="numeric" placeholder="Np. 60">
-              </div>
-              <div class="form-row form-row-checkbox">
-                <label class="checkbox-item checkbox-item-standalone" for="pets-checkbox">
-                  <input type="checkbox" id="pets-checkbox" name="zwierzeta" value="Tak">
-                  <span>Obecność zwierząt domowych</span>
-                </label>
-              </div>
-            </div>
-
-            <div class="form-row form-row-full">
-              <label class="checkbox-item checkbox-item-standalone" for="other-checkbox">
-                <input type="checkbox" id="other-checkbox" name="inne_checkbox" value="Tak">
-                <span>Inne (opcjonalnie)</span>
-              </label>
-              <div class="conditional-section" id="other-text-section">
-                <div class="conditional-section-inner">
-                  <textarea id="other-text" name="message" rows="4" placeholder="Opisz dodatkowe usługi lub swoje oczekiwania..."></textarea>
-                </div>
-              </div>
-            </div>
-
+        <!-- Poniższe pola są widoczne od razu, niezależnie od wyboru rodzaju sprzątania -->
+        <div class="form-row form-row-full">
+          <label>Rodzaj obiektu *</label>
+          <div class="tile-group" id="object-type-tiles">
+            <button type="button" class="tile-option" data-value="Mieszkanie">Mieszkanie</button>
+            <button type="button" class="tile-option" data-value="Dom">Dom</button>
+            <button type="button" class="tile-option" data-value="Biuro">Biuro</button>
+            <button type="button" class="tile-option" data-value="Inny">Inny</button>
           </div>
+          <input type="hidden" id="object-type-input" name="rodzaj_obiektu" value="">
+          <span class="field-warning" id="object-type-warning" hidden>Wybierz rodzaj obiektu.</span>
+        </div>
+
+        <div class="form-row-pair">
+          <div class="form-row">
+            <label for="area">Metraż (m²)</label>
+            <input type="number" id="area" name="area" min="1" step="1" inputmode="numeric" placeholder="Np. 60">
+          </div>
+          <div class="form-row form-row-checkbox">
+            <label class="checkbox-item checkbox-item-standalone" for="pets-checkbox">
+              <input type="checkbox" id="pets-checkbox" name="zwierzeta" value="Tak">
+              <span>Obecność zwierząt domowych</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="form-row form-row-full">
+          <label for="other-text">Inne (opcjonalnie)</label>
+          <textarea id="other-text" name="message" rows="4" placeholder="Opisz dodatkowe usługi lub swoje oczekiwania..."></textarea>
         </div>
 
         <!-- Lokalizacja wybrana na mapie (opcjonalnie, nie blokuje wysyłki) -->
@@ -488,7 +475,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <p class="map-note" id="map-click-note" hidden></p>
         <p class="map-legend">
           <span class="map-legend-dot"></span>
-          Standardowy obszar obsługi — 75 km od Katowic
+          Standardowy obszar obsługi — 60 km od Katowic
         </p>
       </div>
     </div>
