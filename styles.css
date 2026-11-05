@@ -21,6 +21,11 @@
   --border: #e2ded4;
   --radius: 14px;
   --radius-lg: 22px;
+  /* Turkusowo-zielony akcent (ten sam zielony co strefa na mapie) —
+     uzywany punktowo: checkmarki, znaczniki, drobne wyroznienia. */
+  --accent-green: #2fb86a;
+  --accent-green-dark: #1a7a46;
+  --accent-green-bg: rgba(47, 184, 106, 0.12);
   --shadow: 0 20px 45px rgba(15, 29, 51, 0.08);
   --shadow-lg: 0 28px 60px rgba(15, 29, 51, 0.16);
   --font-head: "Sora", "Inter", sans-serif;
@@ -1653,5 +1658,451 @@ a.contact-detail:hover {
 
   .form-row-checkbox {
     justify-content: flex-start;
+  }
+}
+
+/* =====================================================================
+   PODSTRONY USŁUG (sprzatanie-standardowe / pelne / po-remoncie)
+   Współdzielą paletę i komponenty strony głównej (przyciski, section-*),
+   poniżej tylko elementy specyficzne dla układu tych podstron.
+   ===================================================================== */
+
+.service-breadcrumb {
+  padding: 18px 0 0;
+  font-size: 0.86rem;
+  color: var(--text-muted);
+}
+
+.service-breadcrumb a {
+  color: var(--navy);
+  font-weight: 600;
+}
+
+.service-breadcrumb a:hover {
+  color: var(--gold);
+}
+
+/* ---- Hero podstrony usługi ---- */
+.service-hero {
+  padding: 36px 0 90px;
+}
+
+.service-hero-grid {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 48px;
+  align-items: center;
+}
+
+.service-hero--reverse .service-hero-grid {
+  grid-template-columns: 0.95fr 1.05fr;
+}
+
+.service-hero--reverse .service-hero-media {
+  order: 2;
+}
+
+.service-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--accent-green-bg);
+  color: var(--accent-green-dark);
+  font-weight: 700;
+  font-size: 0.78rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 7px 14px;
+  border-radius: 20px;
+  margin-bottom: 18px;
+}
+
+.service-hero h1 {
+  font-size: 2.6rem;
+  line-height: 1.15;
+  color: var(--navy);
+  margin-bottom: 18px;
+}
+
+.service-hero-lead {
+  font-size: 1.08rem;
+  color: var(--text-muted);
+  margin-bottom: 30px;
+  max-width: 540px;
+}
+
+.service-hero-actions {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.service-hero-media {
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+  aspect-ratio: 4 / 3.3;
+}
+
+.service-hero-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ---- Zakres prac ---- */
+.scope-section {
+  padding: 90px 0;
+  background: var(--bg-alt);
+}
+
+.scope-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 26px;
+}
+
+.scope-grid--single {
+  grid-template-columns: 1fr;
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+.scope-category {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 30px 28px;
+  box-shadow: var(--shadow);
+}
+
+.scope-category h3 {
+  font-size: 1.05rem;
+  color: var(--navy);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  margin-bottom: 18px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border);
+}
+
+.scope-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.scope-list li {
+  position: relative;
+  padding-left: 28px;
+  font-size: 0.95rem;
+  color: var(--text-dark);
+  line-height: 1.5;
+}
+
+.scope-list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 2px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--accent-green-bg);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%232fb86a' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12.5l4 4 10-10'/%3E%3C/svg%3E");
+  background-size: 11px;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.scope-note {
+  margin-top: 30px;
+  background: rgba(201, 162, 75, 0.09);
+  border: 1px solid rgba(201, 162, 75, 0.3);
+  border-radius: var(--radius);
+  padding: 18px 22px;
+  font-size: 0.94rem;
+  color: var(--text-dark);
+  max-width: 760px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ---- Galeria realizacji (2 układy: duo / trio) ---- */
+.service-gallery {
+  padding: 90px 0;
+}
+
+.service-gallery-duo {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 16px;
+}
+
+.service-gallery-trio {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 16px;
+}
+
+.service-gallery-item {
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+
+.service-gallery-duo .service-gallery-item:first-child {
+  aspect-ratio: 4 / 3.6;
+}
+
+.service-gallery-duo .service-gallery-item:last-child {
+  aspect-ratio: 3 / 4;
+}
+
+.service-gallery-trio .service-gallery-item {
+  aspect-ratio: 3 / 4;
+}
+
+.service-gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ---- Dla kogo / Czego nie obejmuje ---- */
+.audience-exclusions {
+  padding: 90px 0;
+  background: var(--bg-alt);
+}
+
+.audience-exclusions-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+  align-items: start;
+}
+
+.audience-card,
+.exclusions-card {
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  padding: 34px 30px;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border);
+}
+
+.audience-card h3,
+.exclusions-card h3 {
+  font-size: 1.2rem;
+  color: var(--navy);
+  margin-bottom: 14px;
+}
+
+.audience-card p {
+  color: var(--text-dark);
+  font-size: 0.97rem;
+  line-height: 1.6;
+}
+
+.exclusions-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.exclusions-list li {
+  position: relative;
+  padding-left: 28px;
+  font-size: 0.95rem;
+  color: var(--text-dark);
+  line-height: 1.5;
+}
+
+.exclusions-list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 2px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: rgba(90, 100, 114, 0.12);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%235a6472' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 6l12 12M18 6L6 18'/%3E%3C/svg%3E");
+  background-size: 10px;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.exclusions-card p {
+  color: var(--text-muted);
+  font-size: 0.92rem;
+  line-height: 1.55;
+}
+
+.exclusions-card p a {
+  color: var(--navy);
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+/* ---- Porównanie wariantów ---- */
+.compare-section {
+  padding: 90px 0;
+}
+
+.compare-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.compare-card {
+  display: block;
+  background: var(--white);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 28px 24px;
+  transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+}
+
+.compare-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow);
+}
+
+.compare-card.is-current {
+  border-color: var(--gold);
+  background: rgba(201, 162, 75, 0.06);
+  box-shadow: var(--shadow);
+}
+
+.compare-card-tag {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 10px;
+}
+
+.compare-card h4 {
+  font-size: 1.1rem;
+  color: var(--navy);
+  margin-bottom: 10px;
+}
+
+.compare-card p {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  margin-bottom: 14px;
+}
+
+.compare-card-link {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--navy);
+}
+
+.compare-card.is-current .compare-card-link {
+  color: var(--gold);
+}
+
+/* ---- Pasek CTA na dole podstrony ---- */
+.cta-band {
+  background: linear-gradient(135deg, var(--navy) 0%, var(--navy-2) 100%);
+  padding: 64px 0;
+}
+
+.cta-band-inner {
+  text-align: center;
+}
+
+.cta-band h2 {
+  color: var(--white);
+  font-size: 1.7rem;
+  margin-bottom: 12px;
+}
+
+.cta-band p {
+  color: rgba(255, 255, 255, 0.72);
+  margin-bottom: 28px;
+  font-size: 1rem;
+}
+
+.cta-band-actions {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+/* ---- Link "zobacz pełny zakres" na kartach rodzajów sprzątania (strona główna) ---- */
+.cleaning-type-more {
+  display: block;
+  text-align: center;
+  margin-top: 12px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--navy);
+}
+
+.cleaning-type-more:hover {
+  color: var(--gold);
+}
+
+/* ---- Responsywność podstron usług ---- */
+@media (max-width: 960px) {
+  .service-hero-grid,
+  .service-hero--reverse .service-hero-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .service-hero-media,
+  .service-hero--reverse .service-hero-media {
+    order: -1;
+    aspect-ratio: 16 / 10;
+  }
+
+  .service-hero h1 {
+    font-size: 2.1rem;
+  }
+
+  .audience-exclusions-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .compare-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .service-gallery-duo,
+  .service-gallery-trio {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .service-gallery-duo .service-gallery-item:first-child,
+  .service-gallery-duo .service-gallery-item:last-child,
+  .service-gallery-trio .service-gallery-item {
+    aspect-ratio: 1 / 1;
+  }
+}
+
+@media (max-width: 640px) {
+  .service-hero {
+    padding: 24px 0 60px;
+  }
+
+  .scope-section,
+  .service-gallery,
+  .audience-exclusions,
+  .compare-section {
+    padding: 60px 0;
+  }
+
+  .service-gallery-duo,
+  .service-gallery-trio {
+    grid-template-columns: 1fr;
   }
 }
