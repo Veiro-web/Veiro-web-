@@ -614,52 +614,57 @@ section[id] {
 }
 
 .contact-inner {
-  display: grid;
-  grid-template-columns: minmax(280px, 0.8fr) minmax(360px, 1.2fr);
-  gap: 48px;
-  align-items: start;
-}
-
-.contact-info {
-  min-width: 0;
-}
-
-.contact-info .section-kicker,
-.contact-info .section-title,
-.contact-info .section-subtitle {
-  text-align: left;
-  margin-left: 0;
-}
-
-.contact-details {
   display: flex;
   flex-direction: column;
-  gap: 16px;
-  margin-top: 30px;
+  align-items: center;
+  gap: 8px;
+}
+
+.contact-heading {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.contact-heading .section-kicker,
+.contact-heading .section-title {
+  margin-bottom: 8px;
+}
+
+/* Dane kontaktowe — przeniesione na dół formularza, jedna karta obok drugiej */
+.form-contact-details {
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px 30px;
+  margin-top: 10px;
+  padding-top: 26px;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
 }
 
 .contact-detail {
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 10px;
   font-weight: 600;
-  font-size: 1.02rem;
-  color: var(--navy);
+  font-size: 0.96rem;
+  color: rgba(255, 255, 255, 0.88);
 }
 
 .contact-detail svg {
-  width: 20px;
-  height: 20px;
-  color: var(--gold);
+  width: 19px;
+  height: 19px;
+  color: var(--gold-light);
   flex-shrink: 0;
 }
 
 a.contact-detail:hover {
-  color: var(--gold);
+  color: var(--gold-light);
 }
 
 .quote-form {
-  min-width: 0;
+  width: 100%;
+  max-width: 820px;
   background: linear-gradient(150deg, var(--navy-deep) 0%, var(--navy) 100%);
   padding: 40px;
   border-radius: var(--radius-lg);
@@ -825,6 +830,30 @@ a.contact-detail:hover {
   font-size: 0.9rem;
   color: rgba(255, 255, 255, 0.85);
   list-style: disc;
+}
+
+/* ===== Akordeon: wariant poziomy (karty jedna obok drugiej, rozwijają się w dół) ===== */
+.accordion-horizontal {
+  flex-direction: row;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  align-items: start;
+  gap: 12px;
+}
+
+.accordion-horizontal .accordion-header {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.accordion-horizontal .accordion-header-text {
+  width: 100%;
+}
+
+.accordion-horizontal .accordion-chevron {
+  align-self: flex-end;
+  margin-top: -6px;
 }
 
 /* ===== Kafelki: Rodzaj obiektu ===== */
@@ -1680,6 +1709,28 @@ a.contact-detail:hover {
 
   .accordion-short {
     display: none;
+  }
+
+  /* Na telefonie karty "Rodzaj sprzątania" wracają do jednej kolumny — 3 wąskie kolumny się nie zmieszczą */
+  .accordion-horizontal {
+    grid-template-columns: 1fr;
+  }
+
+  .accordion-horizontal .accordion-header {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .accordion-horizontal .accordion-chevron {
+    align-self: center;
+    margin-top: 0;
+  }
+
+  .form-contact-details {
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
   }
 
   /* Mniejsze odstępy między Metrażem, zwierzętami i "Inne" na telefonie */

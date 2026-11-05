@@ -313,48 +313,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!-- 6. FORMULARZ BEZPŁATNEJ WYCENY -->
   <section id="kontakt" class="contact">
     <div class="container contact-inner">
-      <div class="contact-info reveal">
+      <div class="contact-heading reveal">
         <p class="section-kicker">Bezpłatna wycena</p>
         <h2 class="section-title">Zapytaj, ile to będzie kosztować</h2>
-        <p class="section-subtitle">
-          Wypełnij formularz — odpowiemy z indywidualną propozycją cenową,
-          zwykle w ciągu 24h.
-        </p>
-        <div class="contact-details">
-          <a href="tel:+48516377014" class="contact-detail">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 4h3l1.4 4-2 1.6a11.5 11.5 0 0 0 5.6 5.6l1.6-2 4 1.4v3a1.4 1.4 0 0 1-1.5 1.4A16 16 0 0 1 4.6 5.5 1.4 1.4 0 0 1 6 4Z"/></svg>
-            <span>516 377 014</span>
-          </a>
-          <a href="mailto:kontakt@sprzatanie.slask.pl" class="contact-detail">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5.5" width="17" height="13" rx="1.4"/><path d="M4.5 6.5 12 12.5l7.5-6"/></svg>
-            <span>kontakt@sprzatanie.slask.pl</span>
-          </a>
-          <div class="contact-detail">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-6.5-5.9-6.5-11A6.5 6.5 0 0 1 18.5 10c0 5.1-6.5 11-6.5 11Z"/><circle cx="12" cy="10" r="2.3"/></svg>
-            <span>Śląsk i okolice</span>
-          </div>
-        </div>
       </div>
 
       <form id="quote-form" class="quote-form reveal" action="https://formspree.io/f/moevdkwk" method="POST" novalidate>
         <input type="hidden" name="_subject" value="Nowe zapytanie o wycenę – Sprzątanie Śląsk">
 
-        <div class="form-row form-row-full">
-          <label for="name">Imię i nazwisko *</label>
-          <input type="text" id="name" name="name" required placeholder="Jan Kowalski">
-        </div>
-
-        <div class="form-row form-row-full">
-          <label for="phone">Telefon *</label>
-          <input type="tel" id="phone" name="phone" required inputmode="numeric" pattern="[0-9]{9}" minlength="9" maxlength="9" placeholder="600000000" title="Polski numer telefonu: 9 cyfr, np. 600000000">
-          <span class="field-warning" id="phone-warning" hidden>Numer telefonu powinien mieć 9 cyfr.</span>
-        </div>
-
-        <!-- RODZAJ SPRZĄTANIA — akordeon, wybór jednej opcji -->
+        <!-- RODZAJ SPRZĄTANIA — na górze formularza, karty jedna obok drugiej -->
         <div class="form-row form-row-full">
           <label>Rodzaj sprzątania *</label>
           <a href="/rodzaje-sprzatania/" class="field-help-link">Nie wiesz, jaki rodzaj wybrać?</a>
-          <div class="accordion" id="cleaning-accordion">
+          <div class="accordion accordion-horizontal" id="cleaning-accordion">
 
             <div class="accordion-item" data-value="Sprzątanie standardowe">
               <button type="button" class="accordion-header">
@@ -424,6 +395,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <span class="field-warning" id="cleaning-type-warning" hidden>Wybierz rodzaj sprzątania.</span>
         </div>
 
+        <div class="form-row form-row-full">
+          <label for="name">Imię i nazwisko *</label>
+          <input type="text" id="name" name="name" required placeholder="Jan Kowalski">
+        </div>
+
+        <div class="form-row form-row-full">
+          <label for="phone">Telefon *</label>
+          <input type="tel" id="phone" name="phone" required inputmode="numeric" pattern="[0-9]{9}" minlength="9" maxlength="9" placeholder="600000000" title="Polski numer telefonu: 9 cyfr, np. 600000000">
+          <span class="field-warning" id="phone-warning" hidden>Numer telefonu powinien mieć 9 cyfr.</span>
+        </div>
+
         <!-- Poniższe pola są widoczne od razu, niezależnie od wyboru rodzaju sprzątania -->
         <div class="form-row form-row-full">
           <label class="checkbox-item-standalone" for="pets-checkbox">
@@ -459,6 +441,21 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
 
         <p id="form-status" class="form-status" role="status"></p>
+
+        <div class="form-contact-details">
+          <a href="tel:+48516377014" class="contact-detail">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 4h3l1.4 4-2 1.6a11.5 11.5 0 0 0 5.6 5.6l1.6-2 4 1.4v3a1.4 1.4 0 0 1-1.5 1.4A16 16 0 0 1 4.6 5.5 1.4 1.4 0 0 1 6 4Z"/></svg>
+            <span>516 377 014</span>
+          </a>
+          <a href="mailto:kontakt@sprzatanie.slask.pl" class="contact-detail">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5.5" width="17" height="13" rx="1.4"/><path d="M4.5 6.5 12 12.5l7.5-6"/></svg>
+            <span>kontakt@sprzatanie.slask.pl</span>
+          </a>
+          <div class="contact-detail">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-6.5-5.9-6.5-11A6.5 6.5 0 0 1 18.5 10c0 5.1-6.5 11-6.5 11Z"/><circle cx="12" cy="10" r="2.3"/></svg>
+            <span>Śląsk i okolice</span>
+          </div>
+        </div>
       </form>
     </div>
   </section>
