@@ -245,7 +245,7 @@ section[id] {
 .hero-ticker-track {
   display: flex;
   width: max-content;
-  animation: hero-ticker-scroll 160s linear infinite;
+  animation: hero-ticker-scroll 240s linear infinite;
 }
 
 .hero-ticker-list {
