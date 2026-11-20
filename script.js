@@ -393,3 +393,106 @@ form.addEventListener('submit', function (e) {
     }, 120);
   });
 })();
+
+// ===== Modal: "Poproś o kontakt" — zostaw numer telefonu, wysyłka przez Formspree =====
+(function () {
+  const openBtn = document.getElementById('open-callback-modal');
+  const overlay = document.getElementById('callback-modal-overlay');
+  if (!openBtn || !overlay) return;
+
+  const closeBtn = document.getElementById('callback-modal-close');
+  const form = document.getElementById('callback-form');
+  const phoneInput = document.getElementById('callback-phone');
+  const phoneWarning = document.getElementById('callback-phone-warning');
+  const status = document.getElementById('callback-status');
+  const PHONE_PATTERN = /^[0-9]{9}$/;
+
+  function openModal() {
+    overlay.hidden = false;
+    document.body.style.overflow = 'hidden';
+    window.setTimeout(function () {
+      if (phoneInput) phoneInput.focus();
+    }, 60);
+  }
+
+  function closeModal() {
+    overlay.hidden = true;
+    document.body.style.overflow = '';
+  }
+
+  openBtn.addEventListener('click', openModal);
+  if (closeBtn) closeBtn.addEventListener('click', closeModal);
+
+  overlay.addEventListener('click', function (e) {
+    if (e.target === overlay) closeModal();
+  });
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && !overlay.hidden) closeModal();
+  });
+
+  if (phoneInput) {
+    phoneInput.addEventListener('input', function () {
+      phoneInput.value = phoneInput.value.replace(/[^0-9]/g, '').slice(0, 9);
+      const value = phoneInput.value.trim();
+      const showWarning = value.length > 0 && !PHONE_PATTERN.test(value);
+      if (phoneWarning) phoneWarning.hidden = !showWarning;
+      phoneInput.classList.toggle('invalid', showWarning);
+    });
+  }
+
+  if (form) {
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      const phone = phoneInput.value.trim();
+
+      if (!PHONE_PATTERN.test(phone)) {
+        if (phoneWarning) phoneWarning.hidden = false;
+        phoneInput.classList.add('invalid');
+        status.textContent = 'Podaj poprawny numer telefonu (9 cyfr).';
+        status.className = 'form-status error';
+        phoneInput.focus();
+        return;
+      }
+
+      const submitButton = form.querySelector('button[type="submit"]');
+      submitButton.disabled = true;
+      submitButton.textContent = 'Wysyłanie...';
+
+      const formData = new FormData(form);
+
+      fetch(form.action, {
+        method: 'POST',
+        body: formData,
+        headers: {
+          'Accept': 'application/json'
+        }
+      })
+        .then(function (response) {
+          if (response.ok) {
+            status.textContent = 'Dziękujemy! Oddzwonimy wkrótce.';
+            status.className = 'form-status success';
+            form.reset();
+            if (phoneWarning) phoneWarning.hidden = true;
+            window.setTimeout(closeModal, 1800);
+          } else {
+            return response.json().then(function (data) {
+              throw new Error(
+                data && data.errors
+                  ? data.errors.map(function (err) { return err.message; }).join(', ')
+                  : 'Wystąpił błąd podczas wysyłania.'
+              );
+            });
+          }
+        })
+        .catch(function () {
+          status.textContent = 'Ups! Coś poszło nie tak. Spróbuj ponownie lub zadzwoń: 516 377 014.';
+          status.className = 'form-status error';
+        })
+        .finally(function () {
+          submitButton.disabled = false;
+          submitButton.textContent = 'Wyślij numer';
+        });
+    });
+  }
+})();

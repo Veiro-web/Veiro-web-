@@ -2712,3 +2712,91 @@ section[id] {
     height: 50px;
   }
 }
+
+/* =====================================================================
+   MODAL: "Poproś o kontakt" — szybkie zostawienie numeru telefonu
+   ===================================================================== */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(7, 15, 28, 0.72);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  z-index: 200;
+  animation: modal-fade-in 0.2s ease;
+}
+
+.modal-overlay[hidden] {
+  display: none;
+}
+
+@keyframes modal-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.modal-box {
+  position: relative;
+  width: 100%;
+  max-width: 420px;
+  background: linear-gradient(150deg, var(--navy-deep) 0%, var(--navy) 100%);
+  border-radius: var(--radius-lg);
+  border: 1.5px solid rgba(201, 162, 75, 0.4);
+  box-shadow: var(--shadow-lg), 0 0 46px rgba(201, 162, 75, 0.14);
+  padding: 36px 30px;
+  animation: modal-scale-in 0.22s ease;
+}
+
+@keyframes modal-scale-in {
+  from { opacity: 0; transform: scale(0.95) translateY(8px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+.modal-close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.modal-close:hover {
+  background: rgba(255, 255, 255, 0.16);
+  color: var(--white);
+}
+
+.modal-close svg {
+  width: 16px;
+  height: 16px;
+}
+
+.modal-title {
+  color: var(--white);
+  font-size: 1.3rem;
+  margin-bottom: 8px;
+  padding-right: 24px;
+}
+
+.modal-subtitle {
+  color: rgba(255, 255, 255, 0.65);
+  font-size: 0.92rem;
+  margin-bottom: 22px;
+  line-height: 1.5;
+}
+
+#callback-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
