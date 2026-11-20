@@ -200,7 +200,8 @@ section[id] {
   position: relative;
   min-height: 640px;
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  justify-content: space-between;
   overflow: hidden;
 }
 
@@ -226,8 +227,55 @@ section[id] {
 .hero-inner {
   position: relative;
   z-index: 1;
-  padding: 100px 24px;
+  padding: 64px 24px 40px;
   max-width: 860px;
+}
+
+/* Linijka z miastami — płynnie przesuwa się w lewo */
+.hero-ticker {
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+  border-top: 2px solid var(--gold-light);
+  border-bottom: 2px solid var(--gold-light);
+  background: rgba(7, 15, 28, 0.55);
+  padding: 14px 0;
+}
+
+.hero-ticker-track {
+  display: flex;
+  width: max-content;
+  animation: hero-ticker-scroll 160s linear infinite;
+}
+
+.hero-ticker-list {
+  display: flex;
+  flex-shrink: 0;
+}
+
+.hero-ticker-list span {
+  color: var(--gold-light);
+  font-weight: 600;
+  font-size: 0.95rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  padding: 0 22px;
+}
+
+.hero-ticker-list span::after {
+  content: "·";
+  margin-left: 44px;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+@keyframes hero-ticker-scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-ticker-track { animation-duration: 400s; }
 }
 
 .hero-kicker {
