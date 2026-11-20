@@ -251,3 +251,69 @@ form.addEventListener('submit', function (e) {
   // najpóźniej po 3 s cała treść jest widoczna.
   window.setTimeout(showAll, 3000);
 })();
+
+// ===== Karuzela opinii — przewijanie w lewo/prawo =====
+(function () {
+  const track = document.getElementById('reviews-carousel');
+  if (!track) return;
+
+  const prevBtn = document.getElementById('reviews-prev');
+  const nextBtn = document.getElementById('reviews-next');
+  const dotsWrap = document.getElementById('reviews-dots');
+  const cards = Array.from(track.children);
+  if (!cards.length) return;
+
+  // Punkty nawigacji — jeden na kartę
+  if (dotsWrap) {
+    cards.forEach(function (_, i) {
+      const dot = document.createElement('span');
+      dot.className = 'carousel-nav-dot';
+      if (i === 0) dot.classList.add('is-active');
+      dot.addEventListener('click', function () {
+        cards[i].scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' });
+      });
+      dotsWrap.appendChild(dot);
+    });
+  }
+  const dots = dotsWrap ? Array.from(dotsWrap.children) : [];
+
+  function cardStep() {
+    const first = cards[0];
+    const style = window.getComputedStyle(track);
+    const gap = parseFloat(style.gap || style.columnGap || '26') || 26;
+    return first.getBoundingClientRect().width + gap;
+  }
+
+  if (prevBtn) {
+    prevBtn.addEventListener('click', function () {
+      track.scrollBy({ left: -cardStep(), behavior: 'smooth' });
+    });
+  }
+  if (nextBtn) {
+    nextBtn.addEventListener('click', function () {
+      track.scrollBy({ left: cardStep(), behavior: 'smooth' });
+    });
+  }
+
+  // Aktualizacja aktywnego punktu podczas przewijania (gestem lub przyciskiem)
+  let scrollTimeout;
+  track.addEventListener('scroll', function () {
+    clearTimeout(scrollTimeout);
+    scrollTimeout = setTimeout(function () {
+      if (!dots.length) return;
+      const trackLeft = track.getBoundingClientRect().left;
+      let closestIndex = 0;
+      let closestDistance = Infinity;
+      cards.forEach(function (card, i) {
+        const distance = Math.abs(card.getBoundingClientRect().left - trackLeft);
+        if (distance < closestDistance) {
+          closestDistance = distance;
+          closestIndex = i;
+        }
+      });
+      dots.forEach(function (dot, i) {
+        dot.classList.toggle('is-active', i === closestIndex);
+      });
+    }, 120);
+  });
+})();
