@@ -271,7 +271,25 @@ section[id] {
 
 .hero-actions {
   display: flex;
+  align-items: center;
   gap: 16px;
+  flex-wrap: wrap;
+}
+
+/* Odręczne "lub" między głównym CTA a opcją kontaktu telefonicznego */
+.hero-or {
+  font-family: "Caveat", cursive;
+  font-weight: 700;
+  font-size: 1.6rem;
+  color: var(--white);
+  transform: rotate(-9deg);
+  display: inline-block;
+}
+
+/* Para przycisków kontaktowych (numer + prośba o kontakt) — blisko siebie, jak jedna grupa */
+.hero-phone-group {
+  display: flex;
+  gap: 10px;
   flex-wrap: wrap;
 }
 
