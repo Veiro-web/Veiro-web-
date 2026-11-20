@@ -343,8 +343,35 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
 
       <h3 class="reviews-gallery-title reveal">Nasze realizacje</h3>
-      <div class="gallery-single reveal">
-        <img src="assets/photos/realizacja-lazienka.jpg" alt="Wysprzątana łazienka — realizacja Sprzątanie Śląsk" loading="lazy">
+
+      <!-- Slider realizacji: aby dodać kolejne zdjęcie w przyszłości, wystarczy
+           dopisać nowy <div class="gallery-slide"> z <img> na końcu listy poniżej —
+           miniaturki i przyciski generują się automatycznie (patrz script.js). -->
+      <div class="gallery-slider reveal" id="gallery-slider">
+        <div class="gallery-slider-viewport">
+          <button type="button" class="gallery-arrow gallery-arrow-prev" id="gallery-prev" aria-label="Poprzednie zdjęcie">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg>
+          </button>
+          <div class="gallery-slider-track" id="gallery-slider-track">
+            <div class="gallery-slide"><img src="assets/photos/realizacja-lazienka.jpg" alt="Wysprzątana łazienka — kabina prysznicowa i umywalka" loading="lazy"></div>
+            <div class="gallery-slide"><img src="assets/photos/realizacja-11.jpg" alt="Dokładnie wyczyszczony piekarnik" loading="lazy"></div>
+            <div class="gallery-slide"><img src="assets/photos/realizacja-04.jpg" alt="Nowoczesna kuchnia po sprzątaniu" loading="lazy"></div>
+            <div class="gallery-slide"><img src="assets/photos/realizacja-02.jpg" alt="Czysta kuchnia w zabudowie kompaktowej" loading="lazy"></div>
+            <div class="gallery-slide"><img src="assets/photos/realizacja-03.jpg" alt="Zadbana łazienka w stylu kompaktowym" loading="lazy"></div>
+            <div class="gallery-slide"><img src="assets/photos/realizacja-05.jpg" alt="Elegancka przestrzeń wypoczynkowa po sprzątaniu" loading="lazy"></div>
+            <div class="gallery-slide"><img src="assets/photos/realizacja-06.jpg" alt="Zadbany salon z częścią wypoczynkową" loading="lazy"></div>
+            <div class="gallery-slide"><img src="assets/photos/realizacja-07.jpg" alt="Łazienka po sprzątaniu" loading="lazy"></div>
+            <div class="gallery-slide"><img src="assets/photos/realizacja-08.jpg" alt="Kuchnia w trakcie porządków" loading="lazy"></div>
+            <div class="gallery-slide"><img src="assets/photos/realizacja-09.jpg" alt="Przygotowanie pomieszczenia do sprzątania po remoncie" loading="lazy"></div>
+            <div class="gallery-slide"><img src="assets/photos/realizacja-10.jpg" alt="Porządki w salonie" loading="lazy"></div>
+            <div class="gallery-slide"><img src="assets/photos/realizacja-12.jpg" alt="Sprzątanie kuchni u klienta" loading="lazy"></div>
+            <div class="gallery-slide"><img src="assets/photos/realizacja-13.jpg" alt="Łazienka przygotowywana do sprzątania po remoncie" loading="lazy"></div>
+          </div>
+          <button type="button" class="gallery-arrow gallery-arrow-next" id="gallery-next" aria-label="Następne zdjęcie">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
+          </button>
+        </div>
+        <div class="gallery-thumbs" id="gallery-thumbs"></div>
       </div>
     </div>
   </section>

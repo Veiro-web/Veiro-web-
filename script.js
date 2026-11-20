@@ -317,3 +317,79 @@ form.addEventListener('submit', function (e) {
     }, 120);
   });
 })();
+
+// ===== Slider realizacji — duże zdjęcie + strzałki na fotografii + miniaturki =====
+// Rozbudowa w przyszłości: wystarczy dodać kolejny .gallery-slide w HTML —
+// miniaturki i liczba slajdów generują się tutaj automatycznie, bez zmian w JS.
+(function () {
+  const track = document.getElementById('gallery-slider-track');
+  if (!track) return;
+
+  const prevBtn = document.getElementById('gallery-prev');
+  const nextBtn = document.getElementById('gallery-next');
+  const thumbsWrap = document.getElementById('gallery-thumbs');
+  const slides = Array.from(track.children);
+  if (!slides.length) return;
+
+  if (thumbsWrap) {
+    slides.forEach(function (slide, i) {
+      const img = slide.querySelector('img');
+      if (!img) return;
+      const thumb = document.createElement('button');
+      thumb.type = 'button';
+      thumb.className = 'gallery-thumb';
+      if (i === 0) thumb.classList.add('is-active');
+      thumb.setAttribute('aria-label', 'Zdjęcie ' + (i + 1) + ' z ' + slides.length);
+      const thumbImg = document.createElement('img');
+      thumbImg.src = img.src;
+      thumbImg.alt = '';
+      thumbImg.loading = 'lazy';
+      thumb.appendChild(thumbImg);
+      thumb.addEventListener('click', function () {
+        slide.scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' });
+      });
+      thumbsWrap.appendChild(thumb);
+    });
+  }
+  const thumbs = thumbsWrap ? Array.from(thumbsWrap.children) : [];
+
+  function slideWidth() {
+    return slides[0].getBoundingClientRect().width;
+  }
+
+  if (prevBtn) {
+    prevBtn.addEventListener('click', function () {
+      track.scrollBy({ left: -slideWidth(), behavior: 'smooth' });
+    });
+  }
+  if (nextBtn) {
+    nextBtn.addEventListener('click', function () {
+      track.scrollBy({ left: slideWidth(), behavior: 'smooth' });
+    });
+  }
+
+  let scrollTimeout;
+  track.addEventListener('scroll', function () {
+    clearTimeout(scrollTimeout);
+    scrollTimeout = setTimeout(function () {
+      if (!thumbs.length) return;
+      const trackLeft = track.getBoundingClientRect().left;
+      let closestIndex = 0;
+      let closestDistance = Infinity;
+      slides.forEach(function (slide, i) {
+        const distance = Math.abs(slide.getBoundingClientRect().left - trackLeft);
+        if (distance < closestDistance) {
+          closestDistance = distance;
+          closestIndex = i;
+        }
+      });
+      thumbs.forEach(function (thumb, i) {
+        thumb.classList.toggle('is-active', i === closestIndex);
+      });
+      const activeThumb = thumbs[closestIndex];
+      if (activeThumb && activeThumb.scrollIntoView) {
+        activeThumb.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+      }
+    }, 120);
+  });
+})();
