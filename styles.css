@@ -236,9 +236,8 @@ section[id] {
   position: relative;
   z-index: 1;
   overflow: hidden;
-  border-top: 2px solid var(--gold-light);
   border-bottom: 2px solid var(--gold-light);
-  background: rgba(7, 15, 28, 0.55);
+  background: transparent;
   padding: 14px 0;
 }
 
@@ -260,13 +259,8 @@ section[id] {
   letter-spacing: 0.06em;
   text-transform: uppercase;
   white-space: nowrap;
-  padding: 0 22px;
-}
-
-.hero-ticker-list span::after {
-  content: "·";
-  margin-left: 44px;
-  color: rgba(255, 255, 255, 0.5);
+  padding: 0 32px;
+  text-shadow: 0 1px 10px rgba(7, 15, 28, 0.8);
 }
 
 @keyframes hero-ticker-scroll {
