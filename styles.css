@@ -2866,6 +2866,7 @@ section[id] {
   }
 
   .snav-list {
+    list-style: none;
     position: relative;
     display: flex;
     flex-direction: column;
@@ -2885,6 +2886,7 @@ section[id] {
   }
 
   .snav-list li {
+    list-style: none;
     position: relative;
   }
 
