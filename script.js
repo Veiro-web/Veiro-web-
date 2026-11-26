@@ -546,14 +546,40 @@ form.addEventListener('submit', function (e) {
     setActive(activeId);
   }
 
-  // Po kliknięciu: punkt zmienia się od razu, a obserwator jest wstrzymany do końca przewijania
+  // Po kliknięciu: punkt zmienia się od razu, a obserwator jest wstrzymany do faktycznego
+  // końca przewijania (wykrywanego po ustaniu zmian pozycji — niezależnie od długości
+  // trasy i od tego, czy przeglądarka obsługuje zdarzenie scrollend).
   const reduceMotion =
     window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+  let watchId = 0;
+
   function unlock() {
     locked = false;
-    window.clearTimeout(lockTimer);
+    watchId++;
     update();
+  }
+
+  function watchScrollEnd() {
+    const myId = ++watchId;
+    const start = performance.now();
+    let lastY = window.scrollY;
+    let lastChange = start;
+    function tick(now) {
+      if (myId !== watchId || !locked) return;
+      const y = window.scrollY;
+      if (y !== lastY) {
+        lastY = y;
+        lastChange = now;
+      }
+      const stable = now - lastChange > 160 && now - start > 120;
+      if (stable || now - start > 6000) {
+        unlock();
+        return;
+      }
+      window.requestAnimationFrame(tick);
+    }
+    window.requestAnimationFrame(tick);
   }
 
   const tipTimers = new WeakMap();
@@ -571,17 +597,15 @@ form.addEventListener('submit', function (e) {
       showTip(item.dot);
       locked = true;
       setActive(item.id);
-      window.clearTimeout(lockTimer);
-      lockTimer = window.setTimeout(unlock, reduceMotion ? 80 : 1200); // zabezpieczenie
       item.el.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'start' });
+      watchScrollEnd();
     });
   });
 
-  // Użytkownik przejmuje kontrolę palcem/kółkiem — natychmiast kończymy blokadę
+  // Użytkownik przejmuje kontrolę palcem/kółkiem — kończymy blokadę
   ['touchstart', 'wheel'].forEach(function (evt) {
     window.addEventListener(evt, function () { if (locked) unlock(); }, { passive: true });
   });
-  window.addEventListener('scrollend', function () { if (locked) unlock(); });
 
   if ('IntersectionObserver' in window) {
     const observer = new IntersectionObserver(update, {
