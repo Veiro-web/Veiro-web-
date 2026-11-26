@@ -499,55 +499,102 @@ form.addEventListener('submit', function (e) {
 
 
 // ===== Nawigacja sekcyjna (snav) — wykrywanie aktualnej sekcji =====
+// IntersectionObserver jest tylko wyzwalaczem (cienki pas na ok. 40% wysokości
+// ekranu). O aktywnym punkcie decyduje jedna, stała linia odniesienia: aktywna
+// jest ostatnia sekcja, której górna krawędź jest nad tą linią. Dzięki temu na
+// granicy sekcji nie ma skakania między punktami.
 (function () {
   const nav = document.getElementById('snav');
   if (!nav) return;
 
   const dots = Array.prototype.slice.call(nav.querySelectorAll('[data-snav-target]'));
-  const byId = {};
-  dots.forEach(function (dot) {
-    byId[dot.getAttribute('data-snav-target')] = dot;
-  });
+  const items = dots
+    .map(function (dot) {
+      const id = dot.getAttribute('data-snav-target');
+      return { id: id, dot: dot, el: document.getElementById(id) };
+    })
+    .filter(function (item) { return item.el; });
+
+  const PROBE = 0.4; // linia odniesienia: 40% wysokości ekranu od góry
+  let current = null;
+  let locked = false;
+  let lockTimer = null;
 
   function setActive(id) {
-    dots.forEach(function (dot) {
-      if (dot === byId[id]) {
-        dot.setAttribute('aria-current', 'true');
+    if (id === current) return;
+    current = id;
+    items.forEach(function (item) {
+      if (item.id === id) {
+        item.dot.setAttribute('aria-current', 'true');
       } else {
-        dot.removeAttribute('aria-current');
+        item.dot.removeAttribute('aria-current');
       }
     });
   }
 
-  // Płynne przewijanie (z poszanowaniem prefers-reduced-motion), bez zmiany adresu URL
+  function update() {
+    if (locked) return;
+    const vh = window.innerHeight || document.documentElement.clientHeight;
+    const probeY = vh * PROBE;
+    let activeId = items[0].id;
+    items.forEach(function (item) {
+      if (item.el.getBoundingClientRect().top <= probeY) activeId = item.id;
+    });
+    // Koniec strony: zawsze ostatni punkt (formularz wyceny)
+    const atBottom = window.scrollY + vh >= document.documentElement.scrollHeight - 2;
+    if (atBottom) activeId = items[items.length - 1].id;
+    setActive(activeId);
+  }
+
+  // Po kliknięciu: punkt zmienia się od razu, a obserwator jest wstrzymany do końca przewijania
   const reduceMotion =
     window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  dots.forEach(function (dot) {
-    dot.addEventListener('click', function (e) {
-      const target = document.getElementById(dot.getAttribute('data-snav-target'));
-      if (!target) return;
+
+  function unlock() {
+    locked = false;
+    window.clearTimeout(lockTimer);
+    update();
+  }
+
+  const tipTimers = new WeakMap();
+  function showTip(dot) {
+    dot.classList.add('is-tip');
+    window.clearTimeout(tipTimers.get(dot));
+    tipTimers.set(dot, window.setTimeout(function () {
+      dot.classList.remove('is-tip');
+    }, 1400));
+  }
+
+  items.forEach(function (item) {
+    item.dot.addEventListener('click', function (e) {
       e.preventDefault();
-      target.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'start' });
-      setActive(dot.getAttribute('data-snav-target'));
+      showTip(item.dot);
+      locked = true;
+      setActive(item.id);
+      window.clearTimeout(lockTimer);
+      lockTimer = window.setTimeout(unlock, reduceMotion ? 80 : 1200); // zabezpieczenie
+      item.el.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'start' });
     });
   });
 
-  // Sekcja aktywna = ta, która przecina cienki pas na środku ekranu
+  // Użytkownik przejmuje kontrolę palcem/kółkiem — natychmiast kończymy blokadę
+  ['touchstart', 'wheel'].forEach(function (evt) {
+    window.addEventListener(evt, function () { if (locked) unlock(); }, { passive: true });
+  });
+  window.addEventListener('scrollend', function () { if (locked) unlock(); });
+
   if ('IntersectionObserver' in window) {
-    const observer = new IntersectionObserver(
-      function (entries) {
-        entries.forEach(function (entry) {
-          if (entry.isIntersecting) setActive(entry.target.id);
-        });
-      },
-      { rootMargin: '-48% 0px -48% 0px', threshold: 0 }
-    );
-    Object.keys(byId).forEach(function (id) {
-      const section = document.getElementById(id);
-      if (section) observer.observe(section);
+    const observer = new IntersectionObserver(update, {
+      rootMargin: '-40% 0px -59% 0px',
+      threshold: 0
     });
+    items.forEach(function (item) { observer.observe(item.el); });
+  } else {
+    window.addEventListener('scroll', update, { passive: true });
   }
-  setActive('top');
+  window.addEventListener('resize', update, { passive: true });
+  window.addEventListener('pageshow', update);
+  update();
 
   // Gdy użytkownik wpisuje dane w polach (klawiatura ekranowa), chowamy nawigację
   document.addEventListener('focusin', function (e) {

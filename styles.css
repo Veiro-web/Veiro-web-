@@ -2858,7 +2858,7 @@ section[id] {
   .snav {
     display: block;
     position: fixed;
-    right: env(safe-area-inset-right, 0px);
+    right: calc(env(safe-area-inset-right, 0px) + 3px);
     top: 50%;
     transform: translateY(-50%);
     z-index: 90;
@@ -2878,16 +2878,16 @@ section[id] {
     align-items: center;
   }
 
-  /* cienka linia łącząca punkty */
+  /* delikatna, półprzezroczysta linia łącząca punkty */
   .snav-list::before {
     content: "";
     position: absolute;
-    top: 14px;
-    bottom: 14px;
+    top: 15px;
+    bottom: 15px;
     left: 50%;
     width: 1px;
     transform: translateX(-50%);
-    background: rgba(143, 160, 189, 0.55);
+    background: rgba(143, 160, 189, 0.22);
   }
 
   .snav-list li {
@@ -2913,14 +2913,14 @@ section[id] {
     border-radius: 50%;
     background: #8fa0bd;
     box-shadow: 0 0 0 1.5px rgba(15, 29, 51, 0.45);
-    transition: width 0.25s ease, height 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
+    transition: width 0.3s ease, height 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
   }
 
   .snav-dot[aria-current="true"]::before {
-    width: 11px;
-    height: 11px;
+    width: 10px;
+    height: 10px;
     background: var(--gold-light);
-    box-shadow: 0 0 0 1.5px var(--navy), 0 0 10px 3px rgba(228, 199, 120, 0.55);
+    box-shadow: 0 0 0 1.5px var(--navy), 0 0 6px 1px rgba(228, 199, 120, 0.32);
   }
 
   .snav-dot:focus-visible {
@@ -2929,19 +2929,12 @@ section[id] {
     border-radius: 8px;
   }
 
+  /* etykieta: tylko po interakcji (najechanie, fokus z klawiatury, chwilowo po dotknięciu) */
   .snav-label {
-    display: none;
-  }
-}
-
-/* Etykiety po najechaniu — tylko urządzenia z hoverem */
-@media (max-width: 720px) and (hover: hover) {
-  .snav-label {
-    display: block;
     position: absolute;
     right: 100%;
     top: 50%;
-    transform: translateY(-50%);
+    transform: translateY(-50%) translateX(4px);
     margin-right: 4px;
     padding: 5px 10px;
     border-radius: 6px;
@@ -2949,15 +2942,36 @@ section[id] {
     color: var(--white);
     font-size: 0.78rem;
     font-weight: 500;
+    line-height: 1.2;
     white-space: nowrap;
     opacity: 0;
     pointer-events: none;
-    transition: opacity 0.2s ease;
+    transition: opacity 0.2s ease, transform 0.2s ease;
   }
 
-  .snav-dot:hover .snav-label,
+  .snav-dot.is-tip .snav-label,
   .snav-dot:focus-visible .snav-label {
     opacity: 1;
+    transform: translateY(-50%);
+  }
+}
+
+@media (max-width: 720px) and (hover: hover) {
+  .snav-dot:hover .snav-label {
+    opacity: 1;
+    transform: translateY(-50%);
+  }
+}
+
+/* Telefony o niskim ekranie (np. poziomo lub małe modele) — kompaktowo */
+@media (max-width: 720px) and (max-height: 560px) {
+  .snav-dot {
+    height: 24px;
+  }
+
+  .snav-list::before {
+    top: 12px;
+    bottom: 12px;
   }
 }
 
