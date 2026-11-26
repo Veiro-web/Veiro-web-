@@ -19,7 +19,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Inter:wght@400;500;600;700&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=5">
+<link rel="stylesheet" href="styles.css?v=6">
 <!-- Cloudflare Web Analytics -->
 <script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "cde91d074a4e402f97309ad45cde456e"}'></script>
 <!-- End Cloudflare Web Analytics -->
@@ -635,6 +635,18 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
   </div>
 
-  <script src="script.js"></script>
+  <!-- NAWIGACJA SEKCYJNA (tylko telefony, <=720px) -->
+  <nav class="snav" id="snav" aria-label="Nawigacja po sekcjach strony">
+    <ol class="snav-list">
+      <li><a class="snav-dot" href="#top" data-snav-target="top" aria-label="Start"><span class="snav-label">Start</span></a></li>
+      <li><a class="snav-dot" href="#rodzaje" data-snav-target="rodzaje" aria-label="Rodzaje sprzątania"><span class="snav-label">Rodzaje sprzątania</span></a></li>
+      <li><a class="snav-dot" href="#dlaczego-my" data-snav-target="dlaczego-my" aria-label="Dlaczego my"><span class="snav-label">Dlaczego my</span></a></li>
+      <li><a class="snav-dot" href="#opinie" data-snav-target="opinie" aria-label="Opinie i realizacje"><span class="snav-label">Opinie i realizacje</span></a></li>
+      <li><a class="snav-dot" href="#jak-dzialamy" data-snav-target="jak-dzialamy" aria-label="Jak działamy"><span class="snav-label">Jak działamy</span></a></li>
+      <li><a class="snav-dot" href="#kontakt" data-snav-target="kontakt" aria-label="Wycena"><span class="snav-label">Wycena</span></a></li>
+    </ol>
+  </nav>
+
+  <script src="script.js?v=2"></script>
 </body>
 </html>

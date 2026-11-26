@@ -496,3 +496,68 @@ form.addEventListener('submit', function (e) {
     });
   }
 })();
+
+
+// ===== Nawigacja sekcyjna (snav) — wykrywanie aktualnej sekcji =====
+(function () {
+  const nav = document.getElementById('snav');
+  if (!nav) return;
+
+  const dots = Array.prototype.slice.call(nav.querySelectorAll('[data-snav-target]'));
+  const byId = {};
+  dots.forEach(function (dot) {
+    byId[dot.getAttribute('data-snav-target')] = dot;
+  });
+
+  function setActive(id) {
+    dots.forEach(function (dot) {
+      if (dot === byId[id]) {
+        dot.setAttribute('aria-current', 'true');
+      } else {
+        dot.removeAttribute('aria-current');
+      }
+    });
+  }
+
+  // Płynne przewijanie (z poszanowaniem prefers-reduced-motion), bez zmiany adresu URL
+  const reduceMotion =
+    window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  dots.forEach(function (dot) {
+    dot.addEventListener('click', function (e) {
+      const target = document.getElementById(dot.getAttribute('data-snav-target'));
+      if (!target) return;
+      e.preventDefault();
+      target.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'start' });
+      setActive(dot.getAttribute('data-snav-target'));
+    });
+  });
+
+  // Sekcja aktywna = ta, która przecina cienki pas na środku ekranu
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver(
+      function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) setActive(entry.target.id);
+        });
+      },
+      { rootMargin: '-48% 0px -48% 0px', threshold: 0 }
+    );
+    Object.keys(byId).forEach(function (id) {
+      const section = document.getElementById(id);
+      if (section) observer.observe(section);
+    });
+  }
+  setActive('top');
+
+  // Gdy użytkownik wpisuje dane w polach (klawiatura ekranowa), chowamy nawigację
+  document.addEventListener('focusin', function (e) {
+    if (e.target && /^(INPUT|TEXTAREA|SELECT)$/.test(e.target.tagName)) {
+      nav.classList.add('is-hidden');
+    }
+  });
+  document.addEventListener('focusout', function (e) {
+    if (e.target && /^(INPUT|TEXTAREA|SELECT)$/.test(e.target.tagName)) {
+      nav.classList.remove('is-hidden');
+    }
+  });
+})();
