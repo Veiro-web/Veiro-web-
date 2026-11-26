@@ -1,0 +1,507 @@
+/* Podstrona „Nasza historia” — style z prefiksem hist- (bez ingerencji w styles.css) */
+
+/* Sylwetki jako element graficzny w miejscach na zdjęcia */
+.hist-photo {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  background:
+    radial-gradient(120% 90% at 20% 0%, rgba(228, 199, 120, 0.14) 0%, rgba(228, 199, 120, 0) 55%),
+    linear-gradient(145deg, var(--navy-2) 0%, var(--navy) 60%, var(--navy-deep) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: var(--shadow-lg);
+}
+
+.hist-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.hist-photo-icon {
+  width: 38%;
+  max-width: 220px;
+  height: auto;
+  color: var(--gold-light);
+  opacity: 0.5;
+}
+
+.hist-photo::after {
+  content: "";
+  position: absolute;
+  inset: 14px;
+  border: 1px solid rgba(228, 199, 120, 0.28);
+  border-radius: calc(var(--radius-lg) - 8px);
+  pointer-events: none;
+}
+
+/* ===== 1. Hero ===== */
+.hist-hero {
+  background: linear-gradient(150deg, var(--navy-deep) 0%, var(--navy) 55%, var(--navy-2) 100%);
+  padding: 84px 0 96px;
+  color: var(--white);
+}
+
+.hist-hero-grid {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 56px;
+  align-items: center;
+}
+
+.hist-kicker {
+  color: var(--gold-light);
+  font-weight: 600;
+  font-size: 0.85rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+
+.hist-hero h1 {
+  color: var(--white);
+  font-size: 3rem;
+  line-height: 1.12;
+  margin-bottom: 16px;
+}
+
+.hist-hero-sub {
+  font-family: var(--font-head);
+  font-weight: 600;
+  font-size: 1.25rem;
+  color: var(--gold-light);
+  margin-bottom: 20px;
+}
+
+.hist-hero-text {
+  color: rgba(255, 255, 255, 0.82);
+  font-size: 1.05rem;
+  max-width: 560px;
+  margin-bottom: 34px;
+}
+
+.hist-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.hist-hero .hist-photo {
+  aspect-ratio: 4 / 3;
+}
+
+/* ===== Wspólne nagłówki sekcji (wyrównane do lewej) ===== */
+.hist-section {
+  padding: 96px 0;
+}
+
+.hist-section--alt {
+  background: var(--bg-alt);
+}
+
+.hist-eyebrow {
+  color: var(--gold);
+  font-weight: 600;
+  font-size: 0.85rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.hist-title {
+  font-size: 2.1rem;
+  line-height: 1.2;
+  margin-bottom: 18px;
+}
+
+.hist-lead {
+  color: var(--text-muted);
+  font-size: 1.05rem;
+  max-width: 720px;
+}
+
+.hist-head {
+  margin-bottom: 48px;
+}
+
+.hist-head--center {
+  text-align: center;
+}
+
+.hist-head--center .hist-lead {
+  margin: 0 auto;
+}
+
+/* ===== 2. Historia ===== */
+.hist-story-grid {
+  display: grid;
+  grid-template-columns: 1.25fr 0.75fr;
+  gap: 64px;
+  align-items: start;
+}
+
+.hist-story-text p {
+  color: var(--text-dark);
+  font-size: 1.05rem;
+  margin-bottom: 18px;
+}
+
+.hist-story-text p:last-child {
+  margin-bottom: 0;
+}
+
+.hist-story-text .hist-story-closing {
+  font-family: var(--font-head);
+  font-weight: 700;
+  color: var(--navy);
+  font-size: 1.2rem;
+}
+
+/* Oś: motyw drogi, bez dat i wydarzeń */
+.hist-path {
+  position: relative;
+  padding: 8px 0 8px 36px;
+  border-left: 2px solid rgba(201, 162, 75, 0.45);
+  margin-left: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+}
+
+.hist-path-step {
+  position: relative;
+}
+
+.hist-path-step::before {
+  content: "";
+  position: absolute;
+  left: -46px;
+  top: 4px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--bg);
+  border: 3px solid var(--gold);
+}
+
+.hist-path-step:last-child::before {
+  background: var(--gold);
+}
+
+.hist-path-step strong {
+  display: block;
+  font-family: var(--font-head);
+  color: var(--navy);
+  font-size: 1.05rem;
+  margin-bottom: 4px;
+}
+
+.hist-path-step span {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+}
+
+/* ===== 3. Zespół ===== */
+.hist-team-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+  align-items: start;
+}
+
+.hist-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+.hist-card .hist-photo {
+  aspect-ratio: 4 / 3.4;
+  border-radius: 0;
+  border: 0;
+  box-shadow: none;
+}
+
+.hist-card .hist-photo::after {
+  border-radius: 12px;
+}
+
+.hist-card .hist-photo-icon {
+  width: 30%;
+}
+
+.hist-initial {
+  position: absolute;
+  left: 22px;
+  bottom: 10px;
+  font-family: var(--font-head);
+  font-weight: 800;
+  font-size: 4.2rem;
+  line-height: 1;
+  color: rgba(228, 199, 120, 0.9);
+  z-index: 1;
+}
+
+.hist-card-body {
+  padding: 26px 26px 30px;
+}
+
+.hist-card-body h3 {
+  font-size: 1.4rem;
+  margin-bottom: 6px;
+}
+
+.hist-card-body h3::after {
+  content: "";
+  display: block;
+  width: 36px;
+  height: 3px;
+  border-radius: 2px;
+  background: var(--gold);
+  margin: 12px 0 16px;
+}
+
+.hist-card-body p {
+  color: var(--text-muted);
+  font-size: 0.96rem;
+  margin-bottom: 14px;
+}
+
+.hist-card-body p:last-child {
+  margin-bottom: 0;
+}
+
+.hist-card--pending .hist-card-body h3::after {
+  margin-bottom: 0;
+}
+
+/* ===== 4. Wyróżniki ===== */
+.hist-diff-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  margin-bottom: 32px;
+}
+
+.hist-diff {
+  display: flex;
+  gap: 20px;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 28px;
+  box-shadow: var(--shadow);
+}
+
+.hist-icon {
+  flex-shrink: 0;
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  background: var(--navy);
+  color: var(--gold-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hist-icon svg {
+  width: 26px;
+  height: 26px;
+}
+
+.hist-diff h3 {
+  font-size: 1.15rem;
+  margin-bottom: 8px;
+}
+
+.hist-diff p {
+  color: var(--text-muted);
+  font-size: 0.97rem;
+}
+
+.hist-quote {
+  background: linear-gradient(135deg, var(--navy) 0%, var(--navy-2) 100%);
+  border-radius: var(--radius-lg);
+  padding: 56px 40px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+}
+
+.hist-quote::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 0;
+  transform: translateX(-50%);
+  width: 72px;
+  height: 4px;
+  background: var(--gold);
+  border-radius: 0 0 4px 4px;
+}
+
+.hist-quote p {
+  font-family: var(--font-head);
+  font-weight: 700;
+  color: var(--white);
+  font-size: 2rem;
+  line-height: 1.25;
+  margin: 0;
+}
+
+.hist-quote p span {
+  color: var(--gold-light);
+}
+
+/* ===== 5. Podejście do klienta ===== */
+.hist-client-grid {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: 64px;
+  align-items: start;
+}
+
+.hist-client-text p {
+  color: var(--text-dark);
+  font-size: 1.05rem;
+  margin-bottom: 18px;
+}
+
+.hist-benefits {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.hist-benefit {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 18px;
+  font-size: 0.97rem;
+  color: var(--text-dark);
+}
+
+.hist-benefit .hist-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+}
+
+.hist-benefit .hist-icon svg {
+  width: 21px;
+  height: 21px;
+}
+
+/* ===== 6. Zdjęcie zespołu ===== */
+.hist-team-photo .hist-photo {
+  aspect-ratio: 16 / 7;
+}
+
+.hist-team-photo .hist-photo-icon {
+  width: 18%;
+  max-width: 260px;
+}
+
+.hist-team-caption {
+  text-align: center;
+  font-family: var(--font-head);
+  font-weight: 600;
+  font-size: 1.25rem;
+  line-height: 1.4;
+  color: var(--navy);
+  max-width: 720px;
+  margin: 32px auto 0;
+}
+
+/* ===== 7. CTA ===== */
+.hist-cta-note {
+  font-size: 0.9rem !important;
+  color: rgba(255, 255, 255, 0.55) !important;
+  margin-top: 22px !important;
+  margin-bottom: 0 !important;
+}
+
+.hist-cta-lead {
+  max-width: 640px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ===== Responsywność ===== */
+@media (max-width: 960px) {
+  .hist-hero-grid,
+  .hist-story-grid,
+  .hist-client-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .hist-team-grid {
+    grid-template-columns: 1fr;
+    max-width: 560px;
+    margin: 0 auto;
+  }
+
+  .hist-section {
+    padding: 72px 0;
+  }
+}
+
+@media (max-width: 720px) {
+  .hist-hero {
+    padding: 52px 0 64px;
+  }
+
+  .hist-hero h1 {
+    font-size: 2.2rem;
+  }
+
+  .hist-title {
+    font-size: 1.7rem;
+  }
+
+  .hist-diff-grid,
+  .hist-benefits {
+    grid-template-columns: 1fr;
+  }
+
+  .hist-diff {
+    padding: 22px;
+  }
+
+  .hist-quote {
+    padding: 44px 22px;
+  }
+
+  .hist-quote p {
+    font-size: 1.4rem;
+  }
+
+  .hist-team-photo .hist-photo {
+    aspect-ratio: 4 / 3;
+  }
+
+  .hist-team-photo .hist-photo-icon {
+    width: 34%;
+  }
+
+  .hist-actions .btn {
+    width: 100%;
+  }
+
+  .hist-team-caption {
+    font-size: 1.08rem;
+  }
+}
