@@ -1,0 +1,314 @@
+/* Zarządzanie zgodami cookies — style z prefiksem cc- */
+
+.cc-banner[hidden],
+.cc-overlay[hidden] {
+  display: none !important;
+}
+
+/* Podczas wyświetlania banera/panelu chowamy pionową nawigację sekcyjną (telefony) */
+.cc-active .snav {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.cc-banner,
+.cc-dialog {
+  font-family: var(--font-body, "Inter", sans-serif);
+  color: var(--text-dark, #16202e);
+  line-height: 1.5;
+}
+
+/* ===== Baner ===== */
+.cc-banner {
+  position: fixed;
+  z-index: 1000;
+  left: 12px;
+  right: 12px;
+  bottom: calc(12px + env(safe-area-inset-bottom, 0px));
+  background: var(--white, #fff);
+  border: 1px solid var(--border, #e2ded4);
+  border-top: 3px solid var(--gold, #c9a24b);
+  border-radius: var(--radius, 14px);
+  box-shadow: 0 18px 50px rgba(7, 15, 28, 0.28);
+  padding: 14px 16px 16px;
+  animation: cc-rise 0.35s ease both;
+}
+
+.cc-title {
+  font-family: var(--font-head, "Sora", sans-serif);
+  font-weight: 700;
+  font-size: 0.98rem;
+  color: var(--navy, #0f1d33);
+  margin: 0 0 4px;
+}
+
+.cc-text {
+  font-size: 0.82rem;
+  color: var(--text-muted, #5a6472);
+  margin: 0 0 12px;
+}
+
+.cc-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.cc-actions .cc-btn-outline {
+  grid-column: 1 / -1;
+}
+
+.cc-btn {
+  font-family: var(--font-body, "Inter", sans-serif);
+  font-weight: 600;
+  font-size: 0.85rem;
+  line-height: 1.2;
+  padding: 11px 12px;
+  min-height: 44px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+/* Akceptacja i odrzucenie: identyczny wygląd */
+.cc-btn-primary {
+  background: var(--navy, #0f1d33);
+  color: var(--white, #fff);
+  border: 1.5px solid var(--navy, #0f1d33);
+}
+
+.cc-btn-primary:hover {
+  background: var(--navy-light, #24345a);
+  border-color: var(--navy-light, #24345a);
+}
+
+.cc-btn-outline {
+  background: transparent;
+  color: var(--navy, #0f1d33);
+  border: 1.5px solid var(--navy-light, #24345a);
+}
+
+.cc-btn-outline:hover {
+  background: var(--bg-alt, #eeece6);
+}
+
+.cc-btn:focus-visible,
+.cc-close:focus-visible,
+.cc-switch input:focus-visible + .cc-slider {
+  outline: 3px solid var(--gold, #c9a24b);
+  outline-offset: 2px;
+}
+
+/* ===== Panel ustawień ===== */
+.cc-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1001;
+  background: rgba(7, 15, 28, 0.6);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding: 0;
+  animation: cc-fade 0.2s ease both;
+}
+
+.cc-dialog {
+  position: relative;
+  background: var(--white, #fff);
+  width: 100%;
+  max-width: 560px;
+  max-height: 92vh;
+  max-height: 92dvh;
+  overflow-y: auto;
+  border-radius: var(--radius-lg, 22px) var(--radius-lg, 22px) 0 0;
+  border-top: 3px solid var(--gold, #c9a24b);
+  padding: 20px 18px calc(18px + env(safe-area-inset-bottom, 0px));
+  box-shadow: 0 -10px 50px rgba(7, 15, 28, 0.35);
+  outline: none;
+}
+
+.cc-dialog-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.cc-dialog-title {
+  font-family: var(--font-head, "Sora", sans-serif);
+  font-size: 1.2rem;
+  color: var(--navy, #0f1d33);
+  margin: 0;
+}
+
+.cc-close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  border: 0;
+  background: transparent;
+  color: var(--navy, #0f1d33);
+  cursor: pointer;
+}
+
+.cc-close:hover {
+  background: var(--bg-alt, #eeece6);
+}
+
+.cc-dialog-intro {
+  font-size: 0.88rem;
+  color: var(--text-muted, #5a6472);
+  margin: 0 0 14px;
+}
+
+.cc-cats {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.cc-cat {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 14px;
+  background: var(--bg, #f7f6f3);
+  border: 1px solid var(--border, #e2ded4);
+  border-radius: var(--radius, 14px);
+  padding: 14px;
+}
+
+.cc-cat-title {
+  display: block;
+  font-family: var(--font-head, "Sora", sans-serif);
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--navy, #0f1d33);
+  margin-bottom: 2px;
+}
+
+.cc-cat-desc {
+  font-size: 0.82rem;
+  color: var(--text-muted, #5a6472);
+  margin: 0;
+}
+
+/* Przełącznik */
+.cc-switch {
+  position: relative;
+  flex-shrink: 0;
+  width: 46px;
+  height: 26px;
+  margin-top: 2px;
+}
+
+.cc-switch input {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+  z-index: 1;
+}
+
+.cc-switch input:disabled {
+  cursor: not-allowed;
+}
+
+.cc-slider {
+  position: absolute;
+  inset: 0;
+  border-radius: 999px;
+  background: #aeb7c6;
+  transition: background 0.25s ease;
+}
+
+.cc-slider::before {
+  content: "";
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--white, #fff);
+  box-shadow: 0 1px 3px rgba(7, 15, 28, 0.3);
+  transition: transform 0.25s ease;
+}
+
+.cc-switch input:checked + .cc-slider {
+  background: var(--gold, #c9a24b);
+}
+
+.cc-switch input:checked + .cc-slider::before {
+  transform: translateX(20px);
+}
+
+.cc-switch input:disabled + .cc-slider {
+  opacity: 0.6;
+}
+
+.cc-note {
+  font-size: 0.78rem;
+  color: var(--text-muted, #5a6472);
+  margin: 0 0 16px;
+}
+
+.cc-actions-dialog {
+  grid-template-columns: 1fr 1fr;
+}
+
+/* ===== Większe ekrany ===== */
+@media (min-width: 721px) {
+  .cc-banner {
+    left: 24px;
+    right: auto;
+    bottom: 24px;
+    width: 460px;
+    padding: 18px 20px 20px;
+  }
+
+  .cc-text {
+    font-size: 0.86rem;
+  }
+
+  .cc-overlay {
+    align-items: center;
+    padding: 24px;
+  }
+
+  .cc-dialog {
+    border-radius: var(--radius-lg, 22px);
+    padding: 26px 26px 24px;
+  }
+}
+
+@keyframes cc-rise {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes cc-fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cc-banner,
+  .cc-overlay {
+    animation: none;
+  }
+
+  .cc-slider,
+  .cc-slider::before,
+  .cc-btn {
+    transition: none;
+  }
+}
