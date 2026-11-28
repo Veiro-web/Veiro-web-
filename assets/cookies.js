@@ -1,5 +1,5 @@
 /*
- * Sprzątanie Śląsk — zarządzanie zgodami cookies (Google Consent Mode v2).
+ * MgrSprzatania — zarządzanie zgodami cookies (Google Consent Mode v2).
  *
  * Ten plik ładowany jest SYNCHRONICZNIE w <head>, po bloku `gtag('consent','default')`
  * i PRZED skryptem Google Tag Managera. Dzięki temu zapamiętana zgoda jest odtwarzana
