@@ -2982,3 +2982,40 @@ section[id] {
     transition: none;
   }
 }
+
+
+/* ===== Stopka: obszar działania (lista miast) ===== */
+.footer-areas-title {
+  color: var(--gold-light);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.footer-areas-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 12px;
+  align-items: baseline;
+  list-style: none;
+}
+
+.footer-areas-list li {
+  font-size: 0.76rem;
+  color: rgba(255, 255, 255, 0.55);
+  line-height: 1.5;
+}
+
+.footer-areas-list li.is-major {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.92);
+}
+
+@media (max-width: 960px) {
+  .footer-areas-list {
+    justify-content: center;
+  }
+}
